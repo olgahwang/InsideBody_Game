@@ -1,0 +1,17 @@
+0. Install github and atom
+https://desktop.github.com/
+https://atom.io/
+
+1. Parcel bundler install
+npm install -g parcel-bundler
+https://en.parceljs.org/getting_started.html
+
+2. updated 2 packages in 11.497s
+3. npm init -y
+4. package.json appears inside the folder
+5. Open package.json and paste this inside "scripts":
+
+"start": "python3 -m http.server 7800",
+"build": "parcel build index.html"
+
+6. Save package.json

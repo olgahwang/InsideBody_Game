@@ -1,0 +1,23 @@
+{
+  "name": "InsideBody_Game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python3 -m http.server 7800",
+    "build": "parcel build index.html"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olgahwang/InsideBody_Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olgahwang/InsideBody_Game/issues"
+  },
+  "homepage": "https://github.com/olgahwang/InsideBody_Game#readme"
+}
