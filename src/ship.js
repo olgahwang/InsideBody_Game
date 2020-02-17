@@ -4,22 +4,36 @@ class Ship {
     this.y = y;
     this.trashNum = 0;
     this.shipImage = shipImage;
+    this.shootDelay = 0;
+    this.maxShootDelay = firingRate;
   }
 
   draw() {
+    if (this.shootDelay > 0) {
+      this.shootDelay--;
+    }
     push();
     if (keyIsDown(LEFT_ARROW)) {
-      if (this.x >=5){
+      if (this.x >= 5) {
         this.x -= 10;
       }
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-      if (this.x <=1000){
+      if (this.x <= windowWidth - 5) {
         this.x += 10;
       }
     }
-    image(shipImage, this.x, this.y, 70, 130);
+
+    if (keyIsDown(UP_ARROW)) {
+      if (this.shootDelay === 0) {
+        this.shootDelay = this.maxShootDelay;
+        lazers.push(new Lazer(this.x, this.y));
+      }
+    }
+    let shipW = 70;
+    let shipH = 130;
+    image(shipImage, this.x - shipW / 2, this.y - shipH / 2, shipW, shipH);
     pop();
   }
 }
