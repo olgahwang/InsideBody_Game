@@ -7,8 +7,7 @@ let windowWidth = 1200, windowHeight = 900;
 let shipX, shipY;
 let ship;
 
-document.onload = function() {
-  function preload() {
+function preload() {
     cirTexture = loadImage('../assets/gold.png');
     sqTexture = loadImage('../assets/metal.png');
     trTexture = loadImage('../assets/glass.png');
@@ -33,5 +32,3 @@ document.onload = function() {
   function getRnd(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
-
-};
