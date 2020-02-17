@@ -1,17 +1,26 @@
 class Particle {
-  constructor (x, y){
-    this.partType = getRnd(0,3);
+  constructor(x, y) {
+    this.partType = getRnd(0, 3);
     this.x = x;
     this.y = y;
     //this.img = img;
     this.sprite = createSprite(this.x, this.y);
-    console.log(this.sprite);
-    this.sprite.addAnimation('normal', '../assets/1.png', '../assets/2.png', '../assets/3.png');
-    this.sprite.velocity.y = random(1,5);
+    // console.log(this.sprite);
+    this.sprite.addAnimation(
+      "normal",
+      "../assets/1.png",
+      "../assets/2.png",
+      "../assets/3.png"
+    );
+    this.sprite.velocity.y = random(1, 5);
     this.scaleVal = 1;
   }
 
-  update(){
+  remove() {
+    this.sprite.remove();
+  }
+
+  update() {
     //pressed = -1;
     //logic = false;
     //this.sprite.position.y += this.gravity;
@@ -19,7 +28,6 @@ class Particle {
     //this.y += 10;
     /*if (this.hasBeenHit) {
       this.scaleVal = max(0, this.scaleVal - 0.1);
-
       if (this.scaleVal <= 0){
         this.hasExplosionCompleted = true;
       }
@@ -31,11 +39,14 @@ class Particle {
     }*/
   }
 
-  getPosition() {
+  getPositionY() {
     return this.sprite.position.y;
   }
+  getPositionX() {
+    return this.sprite.position.x;
+  }
 
-  draw(){
+  draw() {
     push();
     scale(this.scaleVal);
     drawSprites();
