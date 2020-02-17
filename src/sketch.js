@@ -7,7 +7,7 @@ let windowWidth = 1200, windowHeight = 900;
 let shipX, shipY;
 let ship;
 
-window.onload = function() {
+document.onload = function() {
   function preload() {
     cirTexture = loadImage('../assets/gold.png');
     sqTexture = loadImage('../assets/metal.png');
