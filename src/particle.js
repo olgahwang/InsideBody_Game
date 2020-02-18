@@ -12,7 +12,7 @@ class Particle {
       "../assets/2.png",
       "../assets/3.png"
     );
-    this.sprite.velocity.y = random(1, 5);
+    this.sprite.velocity.y = getRnd(1,2);
     this.scaleVal = 1;
   }
 

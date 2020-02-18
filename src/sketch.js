@@ -13,6 +13,8 @@ let shipX, shipY;
 let ship, asterisk;
 var particles = [];
 let testImage;
+let playerScore;
+let circeRounded;
 
 function preload() {
   cirTexture = loadImage("../assets/1.png");
@@ -21,6 +23,8 @@ function preload() {
   shipImage = loadImage("../assets/spaceship.png");
   shipX = windowWidth * 0.4;
   shipY = windowHeight * 0.7;
+  playerScore = 0;
+  circeRounded = loadFont('../fonts/CirceRounded.otf');
 }
 
 function setup() {
@@ -59,6 +63,7 @@ function draw() {
           lazers.splice(i, 1);
           particles[j].remove();
           particles.splice(j, 1);
+          playerScore++;
           if (showDebugMessages) {
             console.log("Hit particle #" + j + " with lazer #" + i);
           }
@@ -66,13 +71,12 @@ function draw() {
         }
       }
     }
+
   }
   ship.draw();
   for (i = particles.length - 1; i >= 0; i--) {
     particles[i].update();
     particles[i].draw();
-    //print(particles[i].getPosition());
-
     if (particles[i] != null) {
       if (particles[i].getPositionY() > 800) {
         particles[i].remove();
@@ -82,10 +86,13 @@ function draw() {
 
     if (particles.length <= 2 && particles.length >= 0) {
       type = int(random(0, 2));
-      // print(type);
       particles.push(generateParticle());
     }
   }
+  fill(0, 0, 0);
+  textFont(circeRounded);
+  textSize(20);
+  text("Your Score: " + playerScore, 10, 40);
 }
 
 function getRnd(min, max) {
