@@ -116,6 +116,9 @@ function draw() {
 
   }
   ship.draw();
+  if (parseInt(latestData) > 3){
+    ship.createLazer();
+  }
   for (i = particles.length - 1; i >= 0; i--) {
     particles[i].update();
     particles[i].draw();

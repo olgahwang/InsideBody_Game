@@ -36,4 +36,11 @@ class Ship {
     image(shipImage, this.x - shipW / 2, this.y - shipH / 2, shipW, shipH);
     pop();
   }
+
+  createLazer(){
+    if (this.shootDelay === 0) {
+      this.shootDelay = this.maxShootDelay;
+      lazers.push(new Lazer(this.x, this.y));
+    }
+  }
 }
