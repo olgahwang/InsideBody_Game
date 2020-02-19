@@ -15,3 +15,10 @@ https://en.parceljs.org/getting_started.html
 "build": "parcel build index.html"
 
 6. Save package.json
+
+1. Open terminal
+2. Go to project folder
+cd Documents/GitHub/InsideBody_Game
+3. npm start
+4. Go to http://0.0.0.0:7800/
+5. Go to src to open the game
