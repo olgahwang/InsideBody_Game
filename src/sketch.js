@@ -20,6 +20,10 @@ let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
 var portName = '/dev/tty.usbmodem14201';
 
+let cur = 0;
+let prev = 0;
+let sensor_data = '';
+
 function preload() {
   cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
@@ -116,9 +120,9 @@ function draw() {
 
   }
   ship.draw();
-  if (parseInt(latestData) > 3){
-    ship.createLazer();
-  }
+  //if (parseInt(latestData) > 3){
+  //  ship.createLazer();
+  //}
   for (i = particles.length - 1; i >= 0; i--) {
     particles[i].update();
     particles[i].draw();
@@ -181,10 +185,19 @@ function gotError(theerror) {
 
 // There is data available to work with from the serial port
 function gotData() {
-  let currentString = serial.readString();  // read the incoming string
-  latestData = currentString;
+  let latestData = serial.readString().trim();  // read the incoming string
+  if( latestData !== '') {
+    sensor_data = sensor_data.concat(latestData);
+  } else {
+    if(sensor_data.trim() !== '') {
+      console.log(sensor_data);
+      sensor_data = '';
+    }
+  }
+
   //trim(currentString);                    // remove any trailing whitespace
   //if (!currentString) return;             // if the string is empty, do no more
-  //console.log(latestData);             // print the string
+                // print the string
+// collect chars
   //latestData = currentString;            // save it for the draw metho
 }
