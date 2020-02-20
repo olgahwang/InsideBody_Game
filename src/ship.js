@@ -23,14 +23,14 @@ class Ship {
       if (this.x <= windowWidth - 5) {
         this.x += 10;
       }
-    }
+    }*/
 
     if (keyIsDown(UP_ARROW)) {
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x, this.y));
       }
-    }*/
+    }
     if (a > 0) {
       console.log('SENSOR1: ' + a + ' - X: ' + this.x);
       if (this.x >= 5) {
@@ -39,7 +39,7 @@ class Ship {
     }
     if (a < 0) {
       console.log('SENSOR2: ' + a + ' - X: ' + this.x);
-      if (this.x <= windowWidth - 5) {
+      if (this.x <= (innerWidth - 60)) {
         this.x += 10;
       }
   }
