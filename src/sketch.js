@@ -2,7 +2,7 @@ let cirTexture, sqTexture, trTexture;
 let catchSound;
 let shipImage, bgImage;
 
-var showDebugMessages = true;
+var showDebugMessages = false;
 var firingRate = 25; //  <--- tells you how often you an shoot a lazer
 var lazers = [];
 
@@ -55,38 +55,14 @@ function setup() {
 
   serial = new p5.SerialPort();
 
-  // Get a list the ports available
-  // You should have a callback defined to see the results
+  //Show port information
   serial.list();
-
-  // Assuming our Arduino is connected, let's open the connection to it
-  // Change this to the name of your arduino's serial port
   serial.open(portName);
-
-  // Here are the callbacks that you can register
-  // When we connect to the underlying server
   serial.on('connected', serverConnected);
-
-  // When we get a list of serial ports that are available
   serial.on('list', gotList);
-  // OR
-  //serial.onList(gotList);
-
-  // When we some data from the serial port
   serial.on('data', gotData);
-  // OR
-  //serial.onData(gotData);
-
-  // When or if we get an error
   serial.on('error', gotError);
-  // OR
-  //serial.onError(gotError);
-
-  // When our serial port is opened and ready for read/write
   serial.on('open', gotOpen);
-  // OR
-  //serial.onOpen(gotOpen);
-
   serial.on('close', gotClose);
 }
 
@@ -119,7 +95,6 @@ function draw() {
     }
 
   }
-  //console.log('SENSOR: ' + sensor_data);
   let ship_position = parseFloat(sensor_data);
   if(ship_position){
     ship.draw(ship_position);
