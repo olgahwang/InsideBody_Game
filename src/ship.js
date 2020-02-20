@@ -8,12 +8,12 @@ class Ship {
     this.maxShootDelay = firingRate;
   }
 
-  draw() {
+  draw(a) {
     if (this.shootDelay > 0) {
       this.shootDelay--;
     }
     push();
-    if (keyIsDown(LEFT_ARROW)) {
+    /*if (keyIsDown(LEFT_ARROW)) {
       if (this.x >= 5) {
         this.x -= 10;
       }
@@ -30,11 +30,24 @@ class Ship {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x, this.y));
       }
+    }*/
+    if (a > 0) {
+      console.log('SENSOR1: ' + a + ' - X: ' + this.x);
+      if (this.x >= 5) {
+        this.x -= 10;
+      }
     }
-    let shipW = 70;
-    let shipH = 130;
-    image(shipImage, this.x - shipW / 2, this.y - shipH / 2, shipW, shipH);
-    pop();
+    if (a < 0) {
+      console.log('SENSOR2: ' + a + ' - X: ' + this.x);
+      if (this.x <= windowWidth - 5) {
+        this.x += 10;
+      }
+  }
+  let shipW = 70;
+  let shipH = 130;
+  image(shipImage, this.x, this.y, shipW, shipH);
+  pop();
+
   }
 
   createLazer(){

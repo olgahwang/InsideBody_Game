@@ -119,7 +119,13 @@ function draw() {
     }
 
   }
-  ship.draw();
+  //console.log('SENSOR: ' + sensor_data);
+  let ship_position = parseFloat(sensor_data);
+  if(ship_position){
+    ship.draw(ship_position);
+  } else {
+    ship.draw(0);
+  }
   //if (parseInt(latestData) > 3){
   //  ship.createLazer();
   //}
@@ -189,15 +195,6 @@ function gotData() {
   if( latestData !== '') {
     sensor_data = sensor_data.concat(latestData);
   } else {
-    if(sensor_data.trim() !== '') {
-      console.log(sensor_data);
-      sensor_data = '';
-    }
+    sensor_data = '';
   }
-
-  //trim(currentString);                    // remove any trailing whitespace
-  //if (!currentString) return;             // if the string is empty, do no more
-                // print the string
-// collect chars
-  //latestData = currentString;            // save it for the draw metho
 }
