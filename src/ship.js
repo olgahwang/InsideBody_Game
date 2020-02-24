@@ -28,21 +28,21 @@ class Ship {
     if (keyIsDown(49)) {
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
-        lazers.push(new Lazer(this.x, this.y));
+        lazers.push(new Lazer(this.x+35, this.y));
       }
     }
 
     if (keyIsDown(50)){
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
-        lazers.push(new Lazer(this.x, this.y));
+        lazers.push(new Lazer(this.x+35, this.y));
       }
     }
 
     if (keyIsDown(51)){
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
-        lazers.push(new Lazer(this.x, this.y));
+        lazers.push(new Lazer(this.x+35, this.y));
       }
     }
     if (a > 0) {
@@ -67,7 +67,7 @@ class Ship {
   createLazer(){
     if (this.shootDelay === 0) {
       this.shootDelay = this.maxShootDelay;
-      lazers.push(new Lazer(this.x, this.y));
+      lazers.push(new Lazer(this.x+35, this.y));
     }
   }
 }
