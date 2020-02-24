@@ -2,17 +2,22 @@
 
 #define outputA 3
 #define outputB 4
+#define switchOut 11
+#define shooting A5
  
  int counter = 0; 
  int aState;
  int aLastState; 
 
 //boolean isButton1Pressed = false;
-const char button1Char = 'a';
-  
+const char button1Char = '1';
+const char switchButton = '2';
+const char shootingChar = '3';
+
  void setup() { 
    pinMode (outputA,INPUT);
    pinMode (outputB,INPUT);
+   pinMode (switchOut, INPUT);
    
    Serial.begin (9600);
    // Reads the initial state of the outputA
@@ -21,6 +26,7 @@ const char button1Char = 'a';
       // Activate mouse and keyboard
   Keyboard.begin();
 }
+
  void loop() { 
 
 //  int button1Val = digitalRead(outputA);
@@ -37,8 +43,8 @@ const char button1Char = 'a';
      } else {
        counter --;
      }
-     Serial.print("Position: ");
-     Serial.println(counter);
+     //Serial.print("Position: ");
+     //Serial.println(counter);
    } 
    aLastState = aState; // Updates the previous state of the outputA with the current state
 
@@ -46,9 +52,9 @@ const char button1Char = 'a';
     counter = counter - 40;
     Keyboard.press(button1Char);
     Keyboard.release(button1Char);
-    Serial.print("'");
-    Serial.print(button1Char);
-    Serial.print("': Pressed\t");
+    //Serial.print("'");
+    //Serial.print(button1Char);
+    //Serial.print("': Pressed\t");
 //    numButtonsPressed++;
     
    }
@@ -56,23 +62,33 @@ const char button1Char = 'a';
    if(counter <= -40){
     counter = counter + 40;
     Keyboard.press(button1Char);
+    delay(100);
     Keyboard.release(button1Char);
-    Serial.print("'");
-    Serial.print(button1Char);
-    Serial.print("': Pressed\t");
+    //Serial.print("'");
+    //Serial.print(button1Char);
+    //Serial.print("': Pressed\t");
 //    numButtonsPressed++;
    }
 
    if(numButtonsPressed > 0){
-    Serial.println();
+    //Serial.println();
   }
 
-//   delay(50);
+  if (digitalRead(switchOut) == HIGH) {
+    Keyboard.press(switchButton);
+    delay(100);
+    Keyboard.release(switchButton);
+  }
+
+  if (analogRead(shooting) < 400) {
+    Keyboard.press(shootingChar);
+    delay(100);
+    Keyboard.release(shootingChar);
+  }
 
 /** HANDLE BUTTON INPUT AS KEYBOARD **/
 
 
-  // List of non-alphanumerica keys:
   //  - https://www.arduino.cc/en/Reference/KeyboardModifiers
 //  if(button1Val == LOW){
 //    isButton1Pressed = true;
@@ -88,4 +104,4 @@ const char button1Char = 'a';
   
 
 
-  }
+}
