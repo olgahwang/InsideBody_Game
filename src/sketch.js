@@ -2,6 +2,7 @@ let cirTexture, sqTexture, trTexture;
 let catchSound;
 let shipImage, bgImage;
 
+let goods;
 var showDebugMessages = false;
 var firingRate = 25; //  <--- tells you how often you an shoot a lazer
 var lazers = [];
@@ -64,6 +65,7 @@ function setup() {
   serial.on('error', gotError);
   serial.on('open', gotOpen);
   serial.on('close', gotClose);
+  goods = new GoodNutrient(100,100);
 }
 
 function draw() {
@@ -119,6 +121,7 @@ function draw() {
       particles.push(generateParticle());
     }
   }
+  goods.draw();
   fill(0, 0, 0);
   textFont(circeRounded);
   textSize(20);

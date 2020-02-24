@@ -42,6 +42,7 @@ class Particle {
   getPositionY() {
     return this.sprite.position.y;
   }
+
   getPositionX() {
     return this.sprite.position.x;
   }
