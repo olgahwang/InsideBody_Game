@@ -4,25 +4,33 @@ class Ship {
     this.y = y;
     this.trashNum = 0;
     this.shipMain = createSprite(this.x, this.y);
-    this.shipMain.addImage('normal', shipImage, this.x, this.y);
-    this.shipMain.addAnimation('beam',
-    "../assets/beamTriangle.png",
-    "../assets/beamTriangle2.png",
-    "../assets/beamTriangle3.png",
+    this.shipMain.addAnimation('normal',
+      "../assets/shipNormal1.png"
+    );
+    this.shipMain.addAnimation('beamTr',
+      "../assets/shipBeamTr1.png",
+      "../assets/shipBeamTr2.png"
+    );
+    this.shipMain.addAnimation('beamC',
+      "../assets/shipBeamC1.png",
+      "../assets/shipBeamC2.png"
     );
     this.shootDelay = 0;
     this.maxShootDelay = firingRate;
-    this.beamLife = 0;
+    this.beamTrLife = 0;
+    this.beamCLife = 0;
   }
 
   draw(a) {
-    if (this.beamLife > 0){
-      this.shipMain.changeAnimation('beam');
-      this.shipMain.position.x = this.x;
-      this.shipMain.position.y = this.y;
-      this.beamLife--;
+    if (this.beamTrLife > 0){
+      this.beamTrLife--;
     }
-    if (this.beamLife == 0){
+
+    if (this.beamCLife > 0){
+      this.beamCLife--;
+    }
+
+    if (this.beamTrLife == 0 && this.beamCLife == 0){
       this.shipMain.changeAnimation('normal');
     }
     if (this.shootDelay > 0) {
@@ -43,20 +51,25 @@ class Ship {
     }
 
     if (keyIsDown(49)) {
-      this.beamLife = 50;
-    }
-
-    if (keyIsDown(50)){
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
       }
     }
 
+    if (keyIsDown(50)){
+      if (this.beamTrLife == 0 )
+      {
+        this.shipMain.changeAnimation('beamC');
+        this.beamCLife = 50;
+      }
+    }
+
     if (keyIsDown(51)){
-      if (this.shootDelay === 0) {
-        this.shootDelay = this.maxShootDelay;
-        lazers.push(new Lazer(this.x+35, this.y));
+      if (this.beamCLife == 0 )
+      {
+        this.shipMain.changeAnimation('beamTr');
+        this.beamTrLife = 50;
       }
     }
     if (a > 0) {
