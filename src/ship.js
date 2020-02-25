@@ -3,27 +3,32 @@ class Ship {
     this.x = x;
     this.y = y;
     this.trashNum = 0;
-    this.shipImage = shipImage;
+    this.shipMain = createSprite(this.x, this.y);
+    this.shipMain.addImage('normal', shipImage, this.x, this.y);
+    this.shipMain.addAnimation('beam',
+    "../assets/beamTriangle.png",
+    "../assets/beamTriangle2.png",
+    "../assets/beamTriangle3.png",
+    );
     this.shootDelay = 0;
     this.maxShootDelay = firingRate;
+    this.beamLife = 0;
   }
 
   draw(a) {
-    var trBeam;
-    trBeam = createSprite(400, 200, 10, 10);
-    trBeam.life = -1;
-    if (trBeam.life != -1){
-      trBeam.addAnimation("beam",
-      "../assets/beamTriangle.png",
-      "../assets/beamTriangle2.png",
-      "../assets/beamTriangle3.png",
-      );
-      trBeam.position.x = this.x;
-      trBeam.position.y = this.y - 200;
+    if (this.beamLife > 0){
+      this.shipMain.changeAnimation('beam');
+      this.shipMain.position.x = this.x;
+      this.shipMain.position.y = this.y;
+      this.beamLife--;
+    }
+    if (this.beamLife == 0){
+      this.shipMain.changeAnimation('normal');
     }
     if (this.shootDelay > 0) {
       this.shootDelay--;
     }
+
     push();
     if (keyIsDown(LEFT_ARROW)) {
       if (this.x >= 5) {
@@ -38,11 +43,7 @@ class Ship {
     }
 
     if (keyIsDown(49)) {
-    trBeam.life = 50;
-      /*if (this.shootDelay === 0) {
-        this.shootDelay = this.maxShootDelay;
-        lazers.push(new Lazer(this.x+35, this.y));
-      }*/
+      this.beamLife = 50;
     }
 
     if (keyIsDown(50)){
@@ -72,7 +73,9 @@ class Ship {
   }
   let shipW = 70;
   let shipH = 130;
-  image(shipImage, this.x, this.y, shipW, shipH);
+  this.shipMain.position.x = this.x;
+  this.shipMain.position.y = this.y;
+  //image(shipImage, this.x, this.y, shipW, shipH);
   drawSprites();
   pop();
   }
