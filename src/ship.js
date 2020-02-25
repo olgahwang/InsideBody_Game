@@ -9,6 +9,18 @@ class Ship {
   }
 
   draw(a) {
+    var trBeam;
+    trBeam = createSprite(400, 200, 10, 10);
+    trBeam.life = -1;
+    if (trBeam.life != -1){
+      trBeam.addAnimation("beam",
+      "../assets/beamTriangle.png",
+      "../assets/beamTriangle2.png",
+      "../assets/beamTriangle3.png",
+      );
+      trBeam.position.x = this.x;
+      trBeam.position.y = this.y - 200;
+    }
     if (this.shootDelay > 0) {
       this.shootDelay--;
     }
@@ -26,10 +38,11 @@ class Ship {
     }
 
     if (keyIsDown(49)) {
-      if (this.shootDelay === 0) {
+    trBeam.life = 50;
+      /*if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
-      }
+      }*/
     }
 
     if (keyIsDown(50)){
@@ -60,8 +73,8 @@ class Ship {
   let shipW = 70;
   let shipH = 130;
   image(shipImage, this.x, this.y, shipW, shipH);
+  drawSprites();
   pop();
-
   }
 
   createLazer(){
