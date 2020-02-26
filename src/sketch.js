@@ -194,6 +194,12 @@ function updateNutrients(){
         nutrGroup[p].remove();
         playerScore ++;
       }
+
+      if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'type2') {
+        nutrGroup[p].remove();
+        playerScore ++;
+      }
+
     }
     /*if (nutrGroup[p].y > 0 && nutrGroup[p].y < 900){
 
