@@ -13,6 +13,7 @@ let windowWidth = innerWidth,
 let shipX, shipY;
 let ship, asterisk;
 var particles = [], nutriArray = [];
+var nutrGroup;
 let nutriCount = 5;
 let testImage;
 let playerScore;
@@ -35,9 +36,11 @@ function preload() {
   shipY = windowHeight * 0.7;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
+  nutrGroup = new Group();
 }
 
 function setup() {
+
   let myCanvas = createCanvas(windowWidth, windowHeight);
   myCanvas.parent("myCanvas");
   background(bgImage);
@@ -51,12 +54,14 @@ function setup() {
   for (i = 0; i < particlesCount; i++) {
     let prtcl = generateParticle();
     particles.push(prtcl);
+    let newNutr = generateNutrSprite();
+    nutrGroup.add(newNutr);
   }
 
-  for (i = 0; i < nutriCount; i++) {
+  /*for (i = 0; i < nutriCount; i++) {
     let nutr = generateNutrient();
     nutriArray.push(nutr);
-  }
+  }*/
 
   serial = new p5.SerialPort();
 
@@ -69,11 +74,46 @@ function setup() {
   serial.on('error', gotError);
   serial.on('open', gotOpen);
   serial.on('close', gotClose);
-  goods = new GoodNutrient(100,100);
+
 }
 
 function draw() {
   background(bgImage);
+  checkBacteria();
+  let ship_position = parseFloat(sensor_data);
+  if(ship_position){
+    ship.draw(ship_position);
+  } else {
+    ship.draw(0);
+  }
+  updateBacteria();
+  //checkNutrient();
+  updateNutrients();
+  fill(0, 0, 0);
+  textFont(circeRounded);
+  textSize(20);
+  text("Your Score: " + playerScore, 10, 40);
+  drawSprites();
+}
+
+
+
+function getRnd(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generateParticle() {
+  let x = getRnd(0, 1200);
+  let y = random(0, 50);
+  return new Particle(x, y);
+}
+
+function serverConnected() {
+  print("Connected to Server");
+}
+
+//Bad guys There
+function checkBacteria(){
   for (let i = lazers.length - 1; i >= 0; i--) {
     lazers[i].draw();
     if (!lazers[i].update()) {
@@ -99,15 +139,10 @@ function draw() {
         }
       }
     }
-
   }
-  let ship_position = parseFloat(sensor_data);
-  if(ship_position){
-    ship.draw(ship_position);
-  } else {
-    ship.draw(0);
-  }
+}
 
+function updateBacteria(){
   for (i = particles.length - 1; i >= 0; i--) {
     //particles[i].update();
     particles[i].draw();
@@ -117,61 +152,61 @@ function draw() {
         particles.splice(i, 1);
       }
     }
-
-    if (particles.length <= 2 && particles.length >= 0) {
-      type = int(random(0, 2));
-      particles.push(generateParticle());
-    }
   }
 
-  for (i = nutriArray.length - 1; i >= 0; i--) {
-    nutriArray[i].draw();
-    if (nutriArray[i] != null) {
-      if (nutriArray[i].getPositionY() > 800) {
-        nutriArray[i].remove();
-        nutriArray.splice(i, 1);
-      }
-    }
-
-    if (nutriArray.length <= 2 && nutriArray.length >= 0) {
-      nutriArray.push(generateNutrient());
-    }
+  if (particles.length <= 2 && particles.length >= 0) {
+    type = int(random(0, 2));
+    particles.push(generateParticle());
   }
-
-    if (particles.length <= 2 && particles.length >= 0) {
-      type = int(random(0, 2));
-      particles.push(generateParticle());
-    }
-    fill(0, 0, 0);
-    textFont(circeRounded);
-    textSize(20);
-    text("Your Score: " + playerScore, 10, 40);
-  }
-
-
-
-
-
-function getRnd(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateParticle() {
-  let x = getRnd(0, 1200);
-  let y = random(0, 50);
-  return new Particle(x, y);
-}
-
-function serverConnected() {
-  print("Connected to Server");
-}
 
 // Nutrients here
-function generateNutrient() {
+function generateNutrSprite(){
   let x = getRnd(0, 1200);
-  let y = random(0, 50);
-  return new GoodNutrient(x, y);
+  let y = getRnd(0, 50);
+  let spr = createSprite(x, y);
+  spr.velocity.y = getRnd(1, 2);
+  let t = getRnd(0, 1);
+  if (t == 0){
+    spr.addAnimation ('type1',
+          "../assets/n1.png",
+          "../assets/n2.png",
+          "../assets/n3.png"
+
+    );
+  } else {
+    spr.addAnimation ('type2',
+          "../assets/n4.png",
+          "../assets/n5.png",
+          "../assets/n6.png"
+    );
+  }
+  spr.life = 500;
+  return spr;
 }
+
+function updateNutrients(){
+  for (let p = nutrGroup.length - 1; p >= 0; p--)
+  {
+    if (nutrGroup[p].overlap(ship.sprite)){
+      if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'type1') {
+        nutrGroup[p].remove();
+        playerScore ++;
+      }
+    }
+    /*if (nutrGroup[p].y > 0 && nutrGroup[p].y < 900){
+
+    }*/
+  }
+
+  if (nutrGroup.length < 2 && nutrGroup.length >= 0){
+    let newNutr = generateNutrSprite();
+    nutrGroup.add(newNutr);
+  }
+}
+
+
 
 
 // Got the list of ports

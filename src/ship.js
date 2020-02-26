@@ -19,6 +19,7 @@ class Ship {
     this.maxShootDelay = firingRate;
     this.beamTrLife = 0;
     this.beamCLife = 0;
+    this.sprite = this.shipMain;
   }
 
   draw(a) {
@@ -98,5 +99,12 @@ class Ship {
       this.shootDelay = this.maxShootDelay;
       lazers.push(new Lazer(this.x+35, this.y));
     }
+  }
+
+  checkOverlap(x){
+    if (this.shipMain.overlap(x)){
+      return true;
+    }
+    else return false;
   }
 }
