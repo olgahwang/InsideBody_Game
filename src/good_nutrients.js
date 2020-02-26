@@ -8,7 +8,7 @@ class GoodNutrient {
     this.scaleVal = 1;
     if (this.type == 0){
       //Type 1
-      this.sprite.addAnimation ("normal",
+      this.sprite.addAnimation ('normal',
             "../assets/n1.png",
             "../assets/n2.png",
             "../assets/n3.png"
@@ -18,7 +18,7 @@ class GoodNutrient {
     }
     else if (this.type == 1) {
       //Type 2
-      this.sprite.addAnimation ("normal",
+      this.sprite.addAnimation ('normal',
             "../assets/n4.png",
             "../assets/n5.png",
             "../assets/n6.png"

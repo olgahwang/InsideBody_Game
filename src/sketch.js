@@ -12,7 +12,8 @@ let windowWidth = innerWidth,
 
 let shipX, shipY;
 let ship, asterisk;
-var particles = [];
+var particles = [], nutriArray = [];
+let nutriCount = 5;
 let testImage;
 let playerScore;
 let circeRounded;
@@ -52,7 +53,10 @@ function setup() {
     particles.push(prtcl);
   }
 
-
+  for (i = 0; i < nutriCount; i++) {
+    let nutr = generateNutrient();
+    nutriArray.push(nutr);
+  }
 
   serial = new p5.SerialPort();
 
@@ -103,11 +107,9 @@ function draw() {
   } else {
     ship.draw(0);
   }
-  //if (parseInt(latestData) > 3){
-  //  ship.createLazer();
-  //}
+
   for (i = particles.length - 1; i >= 0; i--) {
-    particles[i].update();
+    //particles[i].update();
     particles[i].draw();
     if (particles[i] != null) {
       if (particles[i].getPositionY() > 800) {
@@ -121,12 +123,34 @@ function draw() {
       particles.push(generateParticle());
     }
   }
-  goods.draw();
-  fill(0, 0, 0);
-  textFont(circeRounded);
-  textSize(20);
-  text("Your Score: " + playerScore, 10, 40);
-}
+
+  for (i = nutriArray.length - 1; i >= 0; i--) {
+    nutriArray[i].draw();
+    if (nutriArray[i] != null) {
+      if (nutriArray[i].getPositionY() > 800) {
+        nutriArray[i].remove();
+        nutriArray.splice(i, 1);
+      }
+    }
+
+    if (nutriArray.length <= 2 && nutriArray.length >= 0) {
+      nutriArray.push(generateNutrient());
+    }
+  }
+
+    if (particles.length <= 2 && particles.length >= 0) {
+      type = int(random(0, 2));
+      particles.push(generateParticle());
+    }
+    fill(0, 0, 0);
+    textFont(circeRounded);
+    textSize(20);
+    text("Your Score: " + playerScore, 10, 40);
+  }
+
+
+
+
 
 function getRnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -141,6 +165,14 @@ function generateParticle() {
 function serverConnected() {
   print("Connected to Server");
 }
+
+// Nutrients here
+function generateNutrient() {
+  let x = getRnd(0, 1200);
+  let y = random(0, 50);
+  return new GoodNutrient(x, y);
+}
+
 
 // Got the list of ports
 function gotList(thelist) {
