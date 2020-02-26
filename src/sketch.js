@@ -14,6 +14,7 @@ var lazers = [];
 let nutriCount = 5;
 let ship, shipX, shipY;
 let newBac;
+let explosionStart = -1;
 
 //score and time
 let playerScore, time;
@@ -64,7 +65,7 @@ function setup() {
   serial.on('error', gotError);
   serial.on('open', gotOpen);
   serial.on('close', gotClose);
-  newBac = generateBactSprite();
+  //newBac = generateBactSprite();
 }
 
 function draw() {
@@ -77,9 +78,12 @@ function draw() {
   } else {
     ship.draw(0);
   }
-
-  if (time == 1){
-    bactGroup.add(newBac);
+  //console.log(time % 5);
+  if (time % 5 == 0){
+    if (bactGroup.length < 2) {
+      newBac = generateBactSprite();
+      bactGroup.add(newBac);
+    }
   }
   updateBacteria();
   //checkNutrient();
@@ -105,14 +109,19 @@ function serverConnected() {
 //Bad guys There
 function generateBactSprite(){
   let x = getRnd(0, 1200);
-  let y = getRnd(0, 50);
+  let y = getRnd(100, 500);
   let spr = createSprite(x, y);
   spr.addAnimation('type1', "../assets/b1.png", "../assets/b2.png", "../assets/b3.png");
+  spr.addAnimation('explosion', "../assets/bb1.png", "../assets/bb2.png", "../assets/bb3.png",
+                                "../assets/bb4.png", "../assets/bb5.png", "../assets/bb6.png",
+                                "../assets/bb7.png", "../assets/bb8.png", "../assets/bb9.png",
+                  );
   return spr;
 }
 
 
 function updateBacteria(){
+  var z = -1;
   for (let i = lazers.length - 1; i >= 0; i--) {
     lazers[i].draw();
     if (!lazers[i].update()) {
@@ -124,18 +133,19 @@ function updateBacteria(){
         for (let j = bactGroup.length - 1; j >= 0; j--)
         {
 
-          let distance = sqrt(pow(lazers[i].x - bactGroup[j].position.x, 2) + pow(lazers[i].y - bactGroup[j].position.y, 2));
-          console.log();
-          if (distance <= 30)
+          let distance = sqrt(pow(lazers[i].x-25 - bactGroup[j].position.x, 2) + pow(lazers[i].y - bactGroup[j].position.y, 2));
+          if (distance <= 40)
           {
             lazers.splice(i, 1);
-            bactGroup[j].remove();
+            bactGroup[j].changeAnimation('explosion');
+            explosionStart = 9;
+            bactGroup[j].life = 9;
             break;
           }
-
         }
       }
   }
+
 }
 
 // Nutrients here
