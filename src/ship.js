@@ -20,6 +20,7 @@ class Ship {
     this.beamTrLife = 0;
     this.beamCLife = 0;
     this.sprite = this.shipMain;
+    this.easing = 0.05;
   }
 
   draw(a) {

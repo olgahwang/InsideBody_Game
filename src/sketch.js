@@ -1,34 +1,34 @@
-let cirTexture, sqTexture, trTexture;
-let catchSound;
-let shipImage, bgImage;
-
-let goods;
+//debugging
 var showDebugMessages = false;
-var firingRate = 25; //  <--- tells you how often you an shoot a lazer
-var lazers = [];
 
+//media
+let shipImage, bgImage;
+let circeRounded;
 let windowWidth = innerWidth,
   windowHeight = innerHeight;
 
-let shipX, shipY;
-let ship, asterisk;
-var particles = [], nutriArray = [];
-var nutrGroup;
+//ship, nutrients and bacterias
+var firingRate = 25; //  <--- tells you how often you can shoot a lazer
+var nutrGroup, bactGroup;
+var lazers = [];
 let nutriCount = 5;
-let testImage;
-let playerScore;
-let circeRounded;
+let ship, shipX, shipY;
+let newBac;
 
+//score and time
+let playerScore, time;
+
+
+//data
 let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
 var portName = '/dev/tty.usbmodem14201';
-
-let cur = 0;
-let prev = 0;
+let cur = 0, prev = 0;
 let sensor_data = '';
 
+
 function preload() {
-  cirTexture = loadImage("../assets/1.png");
+  //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
   bgImage = loadImage("../assets/background.jpg");
   shipImage = loadImage("../assets/spaceship.png");
@@ -37,6 +37,8 @@ function preload() {
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
+  bactGroup = new Group();
+  lazersGroup = new Group();
 }
 
 function setup() {
@@ -45,27 +47,15 @@ function setup() {
   myCanvas.parent("myCanvas");
   background(bgImage);
   ship = new Ship(shipImage, shipX, shipY);
-
-  varImage = trTexture;
   pX = getRnd(0, 1100);
   pY = getRnd(0, 200);
-  particlesCount = 5;
   score = 0;
-  for (i = 0; i < particlesCount; i++) {
-    let prtcl = generateParticle();
-    particles.push(prtcl);
+  for (i = 0; i < 5; i++) {
     let newNutr = generateNutrSprite();
     nutrGroup.add(newNutr);
   }
-
-  /*for (i = 0; i < nutriCount; i++) {
-    let nutr = generateNutrient();
-    nutriArray.push(nutr);
-  }*/
-
+  //data
   serial = new p5.SerialPort();
-
-  //Show port information
   serial.list();
   serial.open(portName);
   serial.on('connected', serverConnected);
@@ -74,17 +64,23 @@ function setup() {
   serial.on('error', gotError);
   serial.on('open', gotOpen);
   serial.on('close', gotClose);
-
+  newBac = generateBactSprite();
 }
 
 function draw() {
   background(bgImage);
-  checkBacteria();
+  time = parseInt(frameCount / 60);
+  console.log(time);
+  //checkBacteria();
   let ship_position = parseFloat(sensor_data);
   if(ship_position){
     ship.draw(ship_position);
   } else {
     ship.draw(0);
+  }
+
+  if (time == 1){
+    bactGroup.add(newBac);
   }
   updateBacteria();
   //checkNutrient();
@@ -93,7 +89,7 @@ function draw() {
   textFont(circeRounded);
   textSize(20);
   text("Your Score: " + playerScore, 10, 40);
-  drawSprites();
+  drawSprites(nutrGroup, bactGroup);
 }
 
 
@@ -102,17 +98,92 @@ function getRnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateParticle() {
-  let x = getRnd(0, 1200);
-  let y = random(0, 50);
-  return new Particle(x, y);
-}
 
 function serverConnected() {
   print("Connected to Server");
 }
 
 //Bad guys There
+function generateBactSprite(){
+  let x = getRnd(0, 1200);
+  let y = getRnd(0, 50);
+  let spr = createSprite(x, y);
+  spr.addAnimation('type1', "../assets/b1.png", "../assets/b2.png", "../assets/b3.png");
+  return spr;
+}
+
+
+function updateBacteria(){
+  for (let i = lazers.length - 1; i >= 0; i--) {
+    lazers[i].draw();
+    if (!lazers[i].update()) {
+      lazers.splice(i, 1);
+      if (showDebugMessages) {
+        console.log("Lazer #" + i + " left the screen!");
+      }
+    } else {
+        for (let j = bactGroup.length - 1; j >= 0; j--)
+        {
+          let distance =
+          Math.sqrt(Math.pow(lazers[i].x - bactGroup[j].x, 2) +
+                    Math.pow(lazers[i].y - bactGroup[j].y, 2)
+          );
+          if (distance < 25 * 1.3)
+          {
+            lazers.splice(i, 1);
+            bactGroup[j].remove();
+
+            break;
+          }
+
+        }
+      }
+  }
+}
+
+
+/*
+if (lazers.length != 0){
+  for (let i = lazers.length; i>=0; i--){
+    lazers[i].draw();
+    function checkBacteria(){
+      for (let i = lazers.length - 1; i >= 0; i--) {
+        lazers[i].draw();
+        if (!lazers[i].update()) {
+          lazers.splice(i, 1);
+          if (showDebugMessages) {
+            console.log("Lazer #" + i + " left the screen!");
+          }
+        } else {
+          for (let j = bactGroup.length - 1; j >= 0; j--)
+          {
+            let distance = Math.sqrt(
+              Math.pow(lazers[i].x - bactGroup[j].x, 2) +
+                Math.pow(lazers[i].y - bactGroup[j].y, 2)
+            );
+            if (distance < 25 * 1.3)
+            {
+              lazers.splice(i, 1);
+              bactGroup[j].remove();
+              //playerScore++;
+              if (showDebugMessages) {
+                console.log("Hit particle #" + j + " with lazer #" + i);
+              }
+              break;
+            }
+
+          }
+        }
+  }
+}
+}
+}
+
+function generateParticle() {
+  let x = getRnd(0, 1200);
+  let y = random(0, 50);
+  return new Particle(x, y);
+}
 function checkBacteria(){
   for (let i = lazers.length - 1; i >= 0; i--) {
     lazers[i].draw();
@@ -159,7 +230,7 @@ function updateBacteria(){
     particles.push(generateParticle());
   }
 }
-
+*/
 
 // Nutrients here
 function generateNutrSprite(){
