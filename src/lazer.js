@@ -1,14 +1,16 @@
-  
+
 class Lazer {
   constructor(x, y) {
     this.x = x;
     this.y = y;
     this.vy = 10;
+    this.image = loadImage("../assets/laz1.png");
   }
 
   draw() {
-    fill(255, 0, 0);
-    rect(this.x - 5, this.y - 20, 10, 40);
+    image(this.image, this.x-50, this.y - 20);
+    //fill(255, 0, 0);
+    //rect(this.x - 5, this.y - 20, 10, 40);
   }
 
   update() {

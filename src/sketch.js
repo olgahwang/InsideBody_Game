@@ -70,7 +70,6 @@ function setup() {
 function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
-  console.log(time);
   //checkBacteria();
   let ship_position = parseFloat(sensor_data);
   if(ship_position){
@@ -124,15 +123,13 @@ function updateBacteria(){
     } else {
         for (let j = bactGroup.length - 1; j >= 0; j--)
         {
-          let distance =
-          Math.sqrt(Math.pow(lazers[i].x - bactGroup[j].x, 2) +
-                    Math.pow(lazers[i].y - bactGroup[j].y, 2)
-          );
-          if (distance < 25 * 1.3)
+
+          let distance = sqrt(pow(lazers[i].x - bactGroup[j].position.x, 2) + pow(lazers[i].y - bactGroup[j].position.y, 2));
+          console.log();
+          if (distance <= 30)
           {
             lazers.splice(i, 1);
             bactGroup[j].remove();
-
             break;
           }
 
@@ -140,97 +137,6 @@ function updateBacteria(){
       }
   }
 }
-
-
-/*
-if (lazers.length != 0){
-  for (let i = lazers.length; i>=0; i--){
-    lazers[i].draw();
-    function checkBacteria(){
-      for (let i = lazers.length - 1; i >= 0; i--) {
-        lazers[i].draw();
-        if (!lazers[i].update()) {
-          lazers.splice(i, 1);
-          if (showDebugMessages) {
-            console.log("Lazer #" + i + " left the screen!");
-          }
-        } else {
-          for (let j = bactGroup.length - 1; j >= 0; j--)
-          {
-            let distance = Math.sqrt(
-              Math.pow(lazers[i].x - bactGroup[j].x, 2) +
-                Math.pow(lazers[i].y - bactGroup[j].y, 2)
-            );
-            if (distance < 25 * 1.3)
-            {
-              lazers.splice(i, 1);
-              bactGroup[j].remove();
-              //playerScore++;
-              if (showDebugMessages) {
-                console.log("Hit particle #" + j + " with lazer #" + i);
-              }
-              break;
-            }
-
-          }
-        }
-  }
-}
-}
-}
-
-function generateParticle() {
-  let x = getRnd(0, 1200);
-  let y = random(0, 50);
-  return new Particle(x, y);
-}
-function checkBacteria(){
-  for (let i = lazers.length - 1; i >= 0; i--) {
-    lazers[i].draw();
-    if (!lazers[i].update()) {
-      lazers.splice(i, 1);
-      if (showDebugMessages) {
-        console.log("Lazer #" + i + " left the screen!");
-      }
-    } else {
-      for (let j = particles.length - 1; j >= 0; j--) {
-        let distance = Math.sqrt(
-          Math.pow(lazers[i].x - particles[j].getPositionX(), 2) +
-            Math.pow(lazers[i].y - particles[j].getPositionY(), 2)
-        );
-        if (distance < 25 * 1.3) {
-          lazers.splice(i, 1);
-          particles[j].remove();
-          particles.splice(j, 1);
-          playerScore++;
-          if (showDebugMessages) {
-            console.log("Hit particle #" + j + " with lazer #" + i);
-          }
-          break;
-        }
-      }
-    }
-  }
-}
-
-function updateBacteria(){
-  for (i = particles.length - 1; i >= 0; i--) {
-    //particles[i].update();
-    particles[i].draw();
-    if (particles[i] != null) {
-      if (particles[i].getPositionY() > 800) {
-        particles[i].remove();
-        particles.splice(i, 1);
-      }
-    }
-  }
-
-  if (particles.length <= 2 && particles.length >= 0) {
-    type = int(random(0, 2));
-    particles.push(generateParticle());
-  }
-}
-*/
 
 // Nutrients here
 function generateNutrSprite(){
