@@ -121,6 +121,7 @@ function generateBactSprite(){
 
 
 function updateBacteria(){
+
   var z = -1;
   for (let i = lazers.length - 1; i >= 0; i--) {
     lazers[i].draw();
@@ -188,9 +189,12 @@ function updateNutrients(){
       }
 
     }
-    /*if (nutrGroup[p].y > 0 && nutrGroup[p].y < 900){
-
-    }*/
+    for (let i = bactGroup.length - 1; i >= 0; i--){
+        if (nutrGroup[p].overlap(bactGroup[i])){
+          bactGroup[i].scale += 0.1;
+          nutrGroup[p].remove();
+        }
+    }
   }
 
   if (nutrGroup.length < 2 && nutrGroup.length >= 0){
