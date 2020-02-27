@@ -85,6 +85,7 @@ function draw() {
       bactGroup.add(newBac);
     }
   }
+  bacNutrOverlap();
   updateBacteria();
   //checkNutrient();
   updateNutrients();
@@ -189,18 +190,31 @@ function updateNutrients(){
       }
 
     }
-    for (let i = bactGroup.length - 1; i >= 0; i--){
+    /*for (let i = bactGroup.length - 1; i >= 0; i--){
         if (nutrGroup[p].overlap(bactGroup[i])){
           bactGroup[i].scale += 0.1;
           nutrGroup[p].remove();
+          break;
         }
-    }
+    }*/
   }
 
   if (nutrGroup.length < 2 && nutrGroup.length >= 0){
     let newNutr = generateNutrSprite();
     nutrGroup.add(newNutr);
   }
+}
+
+function bacNutrOverlap(){
+    for (let j = nutrGroup.length - 1; j>=0; j--){
+      for (let i = bactGroup.length - 1; i >= 0; i--){
+          if (nutrGroup[j].overlap(bactGroup[i])){
+            bactGroup[i].scale += 0.1;
+            nutrGroup[j].remove();
+            break;
+          }
+    }
+}
 }
 
 
