@@ -87,7 +87,6 @@ function draw() {
   }
   bacNutrOverlap();
   updateBacteria();
-  //checkNutrient();
   updateNutrients();
   fill(0, 0, 0);
   textFont(circeRounded);
@@ -122,7 +121,6 @@ function generateBactSprite(){
 
 
 function updateBacteria(){
-
   var z = -1;
   for (let i = lazers.length - 1; i >= 0; i--) {
     lazers[i].draw();

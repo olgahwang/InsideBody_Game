@@ -56,6 +56,7 @@ class Ship {
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
+        console.log("Hi");
       }
     }
 
