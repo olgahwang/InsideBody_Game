@@ -10,6 +10,7 @@ let windowWidth = innerWidth,
 //ship, nutrients and bacterias
 var firingRate = 25; //  <--- tells you how often you can shoot a lazer
 var nutrGroup, bactGroup;
+var food = [];
 var lazers = [];
 let nutriCount = 5;
 let ship, shipX, shipY;
@@ -40,6 +41,7 @@ function preload() {
   nutrGroup = new Group();
   bactGroup = new Group();
   lazersGroup = new Group();
+  food[0] = new Apple;
 }
 
 function setup() {
@@ -51,10 +53,30 @@ function setup() {
   pX = getRnd(0, 1100);
   pY = getRnd(0, 200);
   score = 0;
-  for (i = 0; i < 5; i++) {
+  console.log(food[0].trNum+food[0].cirNum);
+
+    let count = food[0].trNum + food[0].cirNum;
+    let tr = food[0].trNum;
+    let cir = food[0].cirNum;
+    while (count != 0){
+      let type = getRnd(0,1);
+      console.log("Inside while");
+      if (type == 0 && tr > 0) {
+        nutrGroup.add(generateNutrSprite(0));
+        count--;
+        tr--;
+      }
+      if (type == 1 && cir > 0){
+        nutrGroup.add(generateNutrSprite(1));
+        count--;
+        cir--;
+      }
+    }
+
+  /*for (i = 0; i < 5; i++) {
     let newNutr = generateNutrSprite();
     nutrGroup.add(newNutr);
-  }
+  }*/
   //data
   serial = new p5.SerialPort();
   serial.list();
@@ -149,12 +171,11 @@ function updateBacteria(){
 }
 
 // Nutrients here
-function generateNutrSprite(){
+function generateNutrSprite(t){
   let x = getRnd(0, 1200);
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
   spr.velocity.y = getRnd(1, 2);
-  let t = getRnd(0, 1);
   if (t == 0){
     spr.addAnimation ('type1',
           "../assets/n1.png",
@@ -197,10 +218,10 @@ function updateNutrients(){
     }*/
   }
 
-  if (nutrGroup.length < 2 && nutrGroup.length >= 0){
+  /*if (nutrGroup.length < 2 && nutrGroup.length >= 0){
     let newNutr = generateNutrSprite();
     nutrGroup.add(newNutr);
-  }
+  }*/
 }
 
 function bacNutrOverlap(){
