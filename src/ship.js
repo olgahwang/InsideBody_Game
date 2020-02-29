@@ -52,7 +52,7 @@ class Ship {
       }
     }
 
-    if (keyIsDown(49)) {
+    if (keyIsDown(51)) {
       if (this.shootDelay === 0) {
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
@@ -60,7 +60,7 @@ class Ship {
       }
     }
 
-    if (keyIsDown(50)){
+    if (keyIsDown(49)){
       if (this.beamTrLife == 0 )
       {
         this.shipMain.changeAnimation('beamC');
@@ -68,7 +68,7 @@ class Ship {
       }
     }
 
-    if (keyIsDown(51)){
+    if (keyIsDown(50)){
       if (this.beamCLife == 0 )
       {
         this.shipMain.changeAnimation('beamTr');
