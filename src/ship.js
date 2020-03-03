@@ -42,7 +42,7 @@ class Ship {
 
     push();
     if (keyIsDown(LEFT_ARROW)) {
-      if (this.x >= innerWidth*0.17) {
+      if (this.x >= innerWidth*0.2) {
         this.x -= 10;
       }
     }
@@ -67,7 +67,7 @@ class Ship {
       if (this.beamTrLife == 0 )
       {
         this.shipMain.changeAnimation('beamC');
-        this.beamCLife = 50;
+        this.beamCLife = 30;
         beamSound.play();
       }
     }
@@ -76,7 +76,7 @@ class Ship {
       if (this.beamCLife == 0 )
       {
         this.shipMain.changeAnimation('beamTr');
-        this.beamTrLife = 50;
+        this.beamTrLife = 30;
         beamSound.play();
       }
     }

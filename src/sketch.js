@@ -115,7 +115,7 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 6 && nutriCount < 200) {
+  if (nutrGroup.length < 3 && nutriCount < 200) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
@@ -149,16 +149,33 @@ function serverConnected() {
 
 //Bad guys There
 function generateBactSprite(){
-  let x = getRnd(0, 1200);
+  let x = getRnd(innerWidth*0.17, innerWidth-innerWidth*0.18);
   let y = getRnd(100, 500);
   let spr = createSprite(x, y);
-  spr.addAnimation('type1', "../assets/new/bg-purple-1.png");
-  spr.addAnimation('explosion', "../assets/new/bg-purple-1.png", "../assets/new/bg-purple-2.png", "../assets/new/bg-purple-3.png",
-   "../assets/new/bg-purple-4.png", "../assets/new/bg-purple-5.png");
-  /*spr.addAnimation('explosion', "../assets/bb1.png", "../assets/bb2.png", "../assets/bb3.png",
-                                "../assets/bb4.png", "../assets/bb5.png", "../assets/bb6.png",
-                                "../assets/bb7.png", "../assets/bb8.png", "../assets/bb9.png",
-                  );*/
+  spr.scale = 0.7;
+  let tp = getRnd(0,2);
+  if (tp == 0){
+    spr.addAnimation ('t1-normal',
+          "../assets/new/bg-purple-1.png");
+    spr.addAnimation ('t1-explosion',
+    "../assets/new/bg-purple-1.png", "../assets/new/bg-purple-2.png", "../assets/new/bg-purple-3.png",
+     "../assets/new/bg-purple-4.png", "../assets/new/bg-purple-5.png");
+  }
+  if (tp == 1){
+    spr.addAnimation ('t2-normal',
+          "../assets/new/bg-orange-1.png");
+    spr.addAnimation ('t2-explosion',
+    "../assets/new/bg-orange-1.png", "../assets/new/bg-orange-2.png", "../assets/new/bg-orange-3.png",
+     "../assets/new/bg-orange-4.png", "../assets/new/bg-orange-5.png");
+  }
+
+  if (tp == 2){
+    spr.addAnimation ('t3-normal',
+          "../assets/new/bg-blue-1.png");
+    spr.addAnimation ('t3-explosion',
+    "../assets/new/bg-blue-1.png", "../assets/new/bg-blue-2.png", "../assets/new/bg-blue-3.png",
+     "../assets/new/bg-blue-4.png", "../assets/new/bg-blue-5.png");
+  }
   return spr;
 }
 
@@ -180,7 +197,15 @@ function updateBacteria(){
           if (distance <= 40)
           {
             lazers.splice(i, 1);
-            bactGroup[j].changeAnimation('explosion');
+            if (bactGroup[j].getAnimationLabel() == 't1-normal'){
+              bactGroup[j].changeAnimation('t1-explosion');
+            }
+            if (bactGroup[j].getAnimationLabel() == 't2-normal'){
+              bactGroup[j].changeAnimation('t2-explosion');
+            }
+            if (bactGroup[j].getAnimationLabel() == 't3-normal'){
+              bactGroup[j].changeAnimation('t3-explosion');
+            }
             explosionStart = 9;
             bactGroup[j].life = 11;
             bactSound.play();
