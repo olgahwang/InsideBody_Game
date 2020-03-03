@@ -15,6 +15,7 @@ var lazers = [];
 let nutriCount = 5;
 let ship, shipX, shipY;
 let newBac;
+let barWidth = 10;
 let explosionStart = -1;
 
 //score and time
@@ -32,10 +33,10 @@ let sensor_data = '';
 function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
-  bgImage = loadImage("../assets/background.jpg");
-  shipImage = loadImage("../assets/spaceship.png");
+  bgImage = loadImage("../assets/new/bg2.png");
+  shipImage = loadImage("../assets/new/claw.png");
   shipX = windowWidth * 0.4;
-  shipY = windowHeight * 0.7;
+  shipY = windowHeight * 0.73;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
@@ -107,14 +108,26 @@ function draw() {
       bactGroup.add(newBac);
     }
   }
+
+  if (nutrGroup.length < 6 && nutriCount < 200) {
+    nutrGroup.add(generateNutrSprite());
+    nutriCount++;
+    barWidth+=1;
+  }
   bacNutrOverlap();
   updateBacteria();
   updateNutrients();
-  fill(0, 0, 0);
+  fill(224, 75, 55);
   textFont(circeRounded);
-  textSize(20);
-  text("Your Score: " + playerScore, 10, 40);
+  textAlign(CENTER);
+  textSize(50);
+  text(playerScore, innerWidth*0.58, innerHeight*0.88);
   drawSprites(nutrGroup, bactGroup);
+  fill(56, 64, 143);
+  noStroke();
+  //barWidth = map(score, 0, 200, 10, 150, true);
+  //console.log(barWidth);
+  rect(innerWidth*0.56, innerHeight*0.94,barWidth, 35);
 }
 
 
@@ -176,6 +189,7 @@ function generateNutrSprite(t){
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
   spr.velocity.y = getRnd(1, 2);
+  t = getRnd(0,1);
   if (t == 0){
     spr.addAnimation ('type1',
           "../assets/n1.png",
@@ -190,7 +204,7 @@ function generateNutrSprite(t){
           "../assets/n6.png"
     );
   }
-  spr.life = 500;
+  spr.life = 280;
   return spr;
 }
 
