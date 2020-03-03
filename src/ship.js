@@ -5,15 +5,16 @@ class Ship {
     this.trashNum = 0;
     this.shipMain = createSprite(this.x, this.y);
     this.shipMain.addAnimation('normal',
-      "../assets/new/claw.png"
+      "../assets/new/claw-empty.png"
     );
     this.shipMain.addAnimation('beamTr',
-      "../assets/shipBeamTr1.png",
-      "../assets/shipBeamTr2.png"
+      "../assets/new/claw-triangle.png"
     );
     this.shipMain.addAnimation('beamC',
-      "../assets/shipBeamC1.png",
-      "../assets/shipBeamC2.png"
+      "../assets/new/claw-circle.png"
+    );
+    this.shipMain.addAnimation('zap',
+    "../assets/new/claw-square.png"
     );
     this.shootDelay = 0;
     this.maxShootDelay = firingRate;
@@ -52,8 +53,9 @@ class Ship {
       }
     }
 
-    if (keyIsDown(49)) {
+    if (keyIsDown(51)) {
       if (this.shootDelay === 0) {
+        this.shipMain.changeAnimation('zap');
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
         console.log("Hi");
@@ -61,7 +63,7 @@ class Ship {
       }
     }
 
-    if (keyIsDown(50)){
+    if (keyIsDown(49)){
       if (this.beamTrLife == 0 )
       {
         this.shipMain.changeAnimation('beamC');
@@ -70,7 +72,7 @@ class Ship {
       }
     }
 
-    if (keyIsDown(51)){
+    if (keyIsDown(50)){
       if (this.beamCLife == 0 )
       {
         this.shipMain.changeAnimation('beamTr');

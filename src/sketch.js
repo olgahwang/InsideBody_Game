@@ -35,9 +35,9 @@ function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
   bgImage = loadImage("../assets/new/bg2.png");
-  shipImage = loadImage("../assets/new/claw.png");
+  shipImage = loadImage("../assets/new/claw-empty.png");
   shipX = windowWidth * 0.4;
-  shipY = windowHeight * 0.73;
+  shipY = windowHeight * 0.67;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
@@ -127,12 +127,12 @@ function draw() {
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
-  text(playerScore, innerWidth*0.58, innerHeight*0.88);
+  //text(playerScore, innerWidth*0.58, innerHeight*0.88);
   drawSprites(nutrGroup, bactGroup);
   fill(56, 64, 143);
   noStroke();
   //barWidth = map(score, 0, 200, 10, 150, true);
-  console.log(barWidth);
+  //console.log(barWidth);
   rect(innerWidth*0.56, innerHeight*0.94,barWidth, 35);
 }
 
@@ -152,11 +152,13 @@ function generateBactSprite(){
   let x = getRnd(0, 1200);
   let y = getRnd(100, 500);
   let spr = createSprite(x, y);
-  spr.addAnimation('type1', "../assets/b1.png", "../assets/b2.png", "../assets/b3.png");
-  spr.addAnimation('explosion', "../assets/bb1.png", "../assets/bb2.png", "../assets/bb3.png",
+  spr.addAnimation('type1', "../assets/new/bg-purple-1.png");
+  spr.addAnimation('explosion', "../assets/new/bg-purple-1.png", "../assets/new/bg-purple-2.png", "../assets/new/bg-purple-3.png",
+   "../assets/new/bg-purple-4.png", "../assets/new/bg-purple-5.png");
+  /*spr.addAnimation('explosion', "../assets/bb1.png", "../assets/bb2.png", "../assets/bb3.png",
                                 "../assets/bb4.png", "../assets/bb5.png", "../assets/bb6.png",
                                 "../assets/bb7.png", "../assets/bb8.png", "../assets/bb9.png",
-                  );
+                  );*/
   return spr;
 }
 
@@ -180,7 +182,7 @@ function updateBacteria(){
             lazers.splice(i, 1);
             bactGroup[j].changeAnimation('explosion');
             explosionStart = 9;
-            bactGroup[j].life = 9;
+            bactGroup[j].life = 11;
             bactSound.play();
             break;
           }
@@ -192,16 +194,14 @@ function updateBacteria(){
 
 // Nutrients here
 function generateNutrSprite(t){
-  let x = getRnd(0, 1200);
+  let x = getRnd(innerWidth*0.17, innerWidth-innerWidth*0.18);
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
   spr.velocity.y = getRnd(1, 2);
   t = getRnd(0,1);
   if (t == 0){
     spr.addAnimation ('type1',
-          "../assets/n1.png",
-          "../assets/n2.png",
-          "../assets/n3.png"
+          "../assets/new/c.png"
 
     );
   } else {
