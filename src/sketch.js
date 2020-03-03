@@ -6,6 +6,7 @@ let shipImage, bgImage;
 let circeRounded;
 let windowWidth = innerWidth,
   windowHeight = innerHeight;
+let zapSound, nutrSound, bactSound, beamSound;
 
 //ship, nutrients and bacterias
 var firingRate = 25; //  <--- tells you how often you can shoot a lazer
@@ -89,6 +90,11 @@ function setup() {
   serial.on('open', gotOpen);
   serial.on('close', gotClose);
   //newBac = generateBactSprite();
+  zapSound = loadSound('../sounds/shoot.mp3');
+  nutrSound = loadSound('../sounds/hit.mp3');
+  bactSound = loadSound('../sounds/explosion.mp3');
+  beamSound = loadSound('../sounds/pick.mp3');
+  console.log(zapSound);
 }
 
 function draw() {
@@ -112,7 +118,7 @@ function draw() {
   if (nutrGroup.length < 6 && nutriCount < 200) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
-    barWidth+=1;
+    //barWidth+=1;
   }
   bacNutrOverlap();
   updateBacteria();
@@ -126,7 +132,7 @@ function draw() {
   fill(56, 64, 143);
   noStroke();
   //barWidth = map(score, 0, 200, 10, 150, true);
-  //console.log(barWidth);
+  console.log(barWidth);
   rect(innerWidth*0.56, innerHeight*0.94,barWidth, 35);
 }
 
@@ -175,6 +181,7 @@ function updateBacteria(){
             bactGroup[j].changeAnimation('explosion');
             explosionStart = 9;
             bactGroup[j].life = 9;
+            bactSound.play();
             break;
           }
         }
@@ -215,11 +222,14 @@ function updateNutrients(){
       if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'type1') {
         nutrGroup[p].remove();
         playerScore ++;
+        barWidth+=5;
       }
 
       if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'type2') {
         nutrGroup[p].remove();
         playerScore ++;
+        barWidth+=5;
+        nutrSound.play();
       }
 
     }
