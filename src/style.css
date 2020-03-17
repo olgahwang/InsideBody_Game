@@ -1,7 +1,7 @@
-/*@font-face {
+@font-face {
   font-family: "CirceRounded";
   src: url("../fonts/CirceRounded.otf");
-}*/
+}
 
 #myCanvas {
   position: absolute;
