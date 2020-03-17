@@ -38,6 +38,15 @@
   src: url("../fonts/DottiesVanilla-BoldItalic.otf");
 }
 
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 h1 {
   color: #FFE2E2;
   font-family: "DottiesVanilla-BoldItalic";
@@ -84,6 +93,7 @@ img {
 
 
 .bg {
+  animation: fadein 3s;
   width: 100%;
   height: 100%;
   display: flex;
@@ -159,17 +169,19 @@ img {
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
+  transition: transform 2s;
 }
-
 
 #onboarding1 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  animation: fadein 1s;
   background-image: url("../assets/onboarding-1.jpg");
 }
 
 #onboarding2 {
+  animation: fadein 1s;
   background-color: #8B395D;
 }
 
@@ -178,6 +190,7 @@ img {
 }
 
 #onboarding3 {
+  animation: fadein 1s;
   background-color: #8B395D;
 }
 
