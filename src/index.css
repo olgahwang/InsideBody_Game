@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "DottiesVanilla-Bold";
+  src: url("../fonts/DottiesVanilla-Bold.otf");
+}
+
+@font-face {
+  font-family: "DottiesVanilla-BoldItalic";
+  src: url("../fonts/DottiesVanilla-BoldItalic.otf");
+}
+
+@font-face {
+  font-family: "DottiesVanilla-Regular";
+  src: url("../fonts/DottiesVanilla-Regular.otf");
+}
+
+@font-face {
+  font-family: "DottiesVanilla-RegularItalic";
+  src: url("../fonts/DottiesVanilla-RegularItalic.otf");
+}
+
+@font-face {
+  font-family: "DottiesChocolate-Regular";
+  src: url("../fonts/DottiesVanilla-Bold.otf");
+}
+
+@font-face {
+  font-family: "DottiesChocolate-RegularItalic";
+  src: url("../fonts/DottiesChocolate-RegularItalic.otf");
+}
+
+@font-face {
+  font-family: "DottiesChocolate-Bold";
+  src: url("../fonts/DottiesVanilla-Bold.otf");
+}
+
+@font-face {
+  font-family: "DottiesChocolate-BoldItalic";
+  src: url("../fonts/DottiesVanilla-BoldItalic.otf");
+}
+
+h1 {
+  font-family: "DottiesVanilla-BoldItalic";
+  font-size: 137px;
+  line-height: 120%;
+}
+
+h2 {
+  font-family: "DottiesVanilla-Regular";
+  font-size: 60px;
+  line-height: 120%;
+}
+
+h3 {
+  font-family: "DottiesVanilla-Regular";
+  font-size: 46px;
+  line-height: 120%;
+}
+
+h4 {
+  font-family: "DottiesVanilla-Regular";
+  font-size: 30px;
+  line-height: 120%;
+}
+
+p {
+  color: #FFE2E2;
+  font-family: "DottiesVanilla-Bold";
+  font-size: 24px;
+  line-height: 120%;
+}
+
+body, html {
+  background-color: #8B395D;
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-content: flex-end;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../assets/backgroundmain.jpg");
+}
+
+.buttonStyle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.continueButton {
+  width: 100%;
+  display: flex;
+  align-content: left;
+  flex-direction: row;
+  margin-top: 48%;
+  margin-left: 76%;
+  background: none;
+  border: none;
+}
+
+.wrapper {
+  width: innerWidth
+  height: innerHeight;
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: right;
+  margin-left: 50px;
+  margin-right: 30px;
+}
+
+.mainMenu {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../assets/backgroundmain.jpg");
+}
+
+#stompContinue {
+  width: 102px;
+  height: 100px;
+  margin-left: 25px;
+}

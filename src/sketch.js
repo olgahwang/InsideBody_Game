@@ -34,7 +34,7 @@ let sensor_data = '';
 function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
-  bgImage = loadImage("../assets/new/bg2.png");
+  bgImage = loadImage("../assets/backgroundGood.jpg");
   shipImage = loadImage("../assets/new/claw-empty.png");
   shipX = windowWidth * 0.4;
   shipY = windowHeight * 0.67;
