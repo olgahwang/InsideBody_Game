@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./animate.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"
@@ -59,20 +60,21 @@
       <div id="onboarding3" class="onboarding">
         <p>The factory makes <strong>health boosts</strong> for the body with the fiber you collect.</p>
         <div class="particlesOnboarding">
-          <div class="particlesAppearanceClass" id="p1" >
+          <div id="p1" class="particle animated zoomIn">
             <img src="../assets/triangle.png">
           </div>
-          <div id="p2" class="particlesAppearanceClass">
+          <div id="p2" class="particle animated zoomIn delay-1s">
             <img src="../assets/circle.png">
           </div>
-          <div id="p3" class="particlesAppearanceClass">
-            <img src="../assets/triangle.png">
+          <div id="p3" class="particle animated zoomIn delay-2s">
+            <img src="../assets/circle.png">
           </div>
-          <div id="p4" class="particlesAppearanceClass">
+          <div id="p4" class="particle animated zoomIn delay-3s">
             <img src="../assets/bacteria.png">
           </div>
         </div>
-        <button class="continueButton" onclick="window.location.href = './game.html';">
+        <button class="continueButton">
+        <!--<button class="continueButton" onclick="window.location.href = './game.html';">-->
             <div id="stompContinueButton" class="buttonStyle">
               <p>NEXT</p>
               <img id="stompContinue" src="../assets/stomp-continue.png">
