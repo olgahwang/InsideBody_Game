@@ -38,6 +38,11 @@
   src: url("../fonts/DottiesVanilla-BoldItalic.otf");
 }
 
+@font-face {
+  font-family: "DottiesChocolate-Heavy";
+  src: url("../fonts/DottiesChocolate-Heavy.otf");
+}
+
 @keyframes fadein {
   0% {
     opacity: 0;
@@ -70,7 +75,7 @@ h3 {
 
 h4 {
   color: #FFE2E2;
-  font-family: "DottiesVanilla-Heavy";
+  font-family: "DottiesChocolate-Heavy";
   font-size: 32px;
   margin-bottom: 0px;
 }
@@ -172,6 +177,12 @@ img {
   transition: transform 2s;
 }
 
+.particlesOnboarding {
+  margin-top: 405px;
+  margin-left: 500px;
+  display: flex;
+}
+
 #onboarding1 {
   background-position: center;
   background-repeat: no-repeat;
@@ -190,12 +201,55 @@ img {
 }
 
 #onboarding3 {
+  width: 100%;
   animation: fadein 1s;
   background-color: #8B395D;
+  background-image: url("../assets/onboarding-3.jpg");
 }
 
 #stompContinue {
   width: 102px;
   height: 100px;
   margin-left: 25px;
+}
+
+@keyframes particlesAppearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.particlesAppearanceClass{
+  opacity: 0;
+}
+
+#p1 {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  animation: particlesAppearance 2s;
+}
+
+#p2 {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  animation-delay: 2s;
+  animation: particlesAppearance 2s;
+}
+
+#p3 {
+  width: 80px;
+  height: 80px;
+  margin-right: 300px;
+  animation-delay: 4s;
+  animation: particlesAppearance 2s;
+}
+
+#p4 {
+  width: 80px;
+  height: 80px;
+  animation: particlesAppearance 2s delay 3s;
 }
