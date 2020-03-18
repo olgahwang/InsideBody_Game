@@ -156,14 +156,14 @@ function generateBactSprite(){
   let tp = getRnd(0,2);
   if (tp == 0){
     spr.addAnimation ('t1-normal',
-          "../assets/new/bg-purple-1.png");
+          "../assets/bacteriaType1.png");
     spr.addAnimation ('t1-explosion',
     "../assets/new/bg-purple-1.png", "../assets/new/bg-purple-2.png", "../assets/new/bg-purple-3.png",
      "../assets/new/bg-purple-4.png", "../assets/new/bg-purple-5.png");
   }
   if (tp == 1){
     spr.addAnimation ('t2-normal',
-          "../assets/new/bg-orange-1.png");
+          "../assets/bacteriaType2.png");
     spr.addAnimation ('t2-explosion',
     "../assets/new/bg-orange-1.png", "../assets/new/bg-orange-2.png", "../assets/new/bg-orange-3.png",
      "../assets/new/bg-orange-4.png", "../assets/new/bg-orange-5.png");
@@ -171,7 +171,7 @@ function generateBactSprite(){
 
   if (tp == 2){
     spr.addAnimation ('t3-normal',
-          "../assets/new/bg-blue-1.png");
+          "../assets/bacteriaType3.png");
     spr.addAnimation ('t3-explosion',
     "../assets/new/bg-blue-1.png", "../assets/new/bg-blue-2.png", "../assets/new/bg-blue-3.png",
      "../assets/new/bg-blue-4.png", "../assets/new/bg-blue-5.png");
