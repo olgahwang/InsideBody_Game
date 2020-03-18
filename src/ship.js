@@ -5,15 +5,16 @@ class Ship {
     this.trashNum = 0;
     this.shipMain = createSprite(this.x, this.y);
     this.shipMain.addAnimation('normal',
-      "../assets/shipNormal1.png"
+      "../assets/char2.png"
     );
     this.shipMain.addAnimation('beamTr',
-      "../assets/shipBeamTr1.png",
-      "../assets/shipBeamTr2.png"
+      "../assets/new/claw-triangle.png"
     );
     this.shipMain.addAnimation('beamC',
-      "../assets/shipBeamC1.png",
-      "../assets/shipBeamC2.png"
+      "../assets/new/claw-circle.png"
+    );
+    this.shipMain.addAnimation('zap',
+    "../assets/new/claw-square.png"
     );
     this.shootDelay = 0;
     this.maxShootDelay = firingRate;
@@ -41,22 +42,24 @@ class Ship {
 
     push();
     if (keyIsDown(LEFT_ARROW)) {
-      if (this.x >= 5) {
+      if (this.x >= innerWidth*0.15) {
         this.x -= 10;
       }
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-      if (this.x <= windowWidth - 5) {
+      if (this.x <= innerWidth-innerWidth*0.15) {
         this.x += 10;
       }
     }
 
     if (keyIsDown(51)) {
       if (this.shootDelay === 0) {
+        this.shipMain.changeAnimation('zap');
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
         console.log("Hi");
+        zapSound.play();
       }
     }
 
@@ -64,7 +67,8 @@ class Ship {
       if (this.beamTrLife == 0 )
       {
         this.shipMain.changeAnimation('beamC');
-        this.beamCLife = 50;
+        this.beamCLife = 30;
+        beamSound.play();
       }
     }
 
@@ -72,7 +76,8 @@ class Ship {
       if (this.beamCLife == 0 )
       {
         this.shipMain.changeAnimation('beamTr');
-        this.beamTrLife = 50;
+        this.beamTrLife = 30;
+        beamSound.play();
       }
     }
     if (a > 0) {

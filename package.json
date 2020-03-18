@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "python3 -m http.server 7800",
-    "build": "parcel build src/index.html --public-url https://olgahwang.github.io/InsideBody_Game/; rm -rf docs; mv dist docs;"
+    "build": "parcel build src/index.html --no-minify --public-url https://olgahwang.github.io/InsideBody_Game/; rm -rf docs; mv dist docs;"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "homepage": "https://github.com/olgahwang/InsideBody_Game#readme",
   "devDependencies": {
     "cssnano": "^4.1.10"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5"
   }
 }
