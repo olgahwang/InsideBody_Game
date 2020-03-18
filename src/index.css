@@ -19,6 +19,11 @@
 }
 
 @font-face {
+  font-family: "DottiesVanilla-ExtraBold";
+  src: url("../fonts/DottiesVanilla-ExtraBold.otf");
+}
+
+@font-face {
   font-family: "DottiesChocolate-Regular";
   src: url("../fonts/DottiesVanilla-Bold.otf");
 }
@@ -151,6 +156,10 @@ img {
   display: flex;
   justify-content: flex-end;
   flex-direction: row-row-reverse;
+}
+
+.continueButton:hover {
+  opacity: 0.8;
 }
 
 .wrapper {
