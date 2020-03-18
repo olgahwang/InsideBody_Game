@@ -35,9 +35,9 @@ function preload() {
   //cirTexture = loadImage("../assets/1.png");
   sqTexture = loadImage("../assets/tr1.png");
   bgImage = loadImage("../assets/backgroundGood.jpg");
-  shipImage = loadImage("../assets/new/claw-empty.png");
+  shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
-  shipY = windowHeight * 0.67;
+  shipY = windowHeight * 0.765;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
@@ -236,7 +236,6 @@ function generateNutrSprite(t){
           "../assets/n6.png"
     );
   }
-  spr.life = 280;
   return spr;
 }
 
@@ -258,13 +257,10 @@ function updateNutrients(){
       }
 
     }
-    /*for (let i = bactGroup.length - 1; i >= 0; i--){
-        if (nutrGroup[p].overlap(bactGroup[i])){
-          bactGroup[i].scale += 0.1;
-          nutrGroup[p].remove();
-          break;
-        }
-    }*/
+    console.log(nutrGroup[p].position.y);
+    if (nutrGroup[p].position.y > innerHeight*0.8){
+      nutrGroup[p].life = 0;
+    }
   }
 
   /*if (nutrGroup.length < 2 && nutrGroup.length >= 0){

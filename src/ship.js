@@ -5,7 +5,7 @@ class Ship {
     this.trashNum = 0;
     this.shipMain = createSprite(this.x, this.y);
     this.shipMain.addAnimation('normal',
-      "../assets/new/claw-empty.png"
+      "../assets/char2.png"
     );
     this.shipMain.addAnimation('beamTr',
       "../assets/new/claw-triangle.png"
@@ -42,13 +42,13 @@ class Ship {
 
     push();
     if (keyIsDown(LEFT_ARROW)) {
-      if (this.x >= innerWidth*0.2) {
+      if (this.x >= innerWidth*0.15) {
         this.x -= 10;
       }
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-      if (this.x <= innerWidth-innerWidth*0.18) {
+      if (this.x <= innerWidth-innerWidth*0.15) {
         this.x += 10;
       }
     }
