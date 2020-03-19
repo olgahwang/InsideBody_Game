@@ -161,8 +161,8 @@ function generateBactSprite(){
     "../assets/bb1/bb1-1.png", "../assets/bb1/bb1-2.png", "../assets/bb1/bb1-3.png",
     "../assets/bb1/bb1-4.png", "../assets/bb1/bb1-5.png", "../assets/bb1/bb1-6.png",
     "../assets/bb1/bb1-7.png", "../assets/bb1/bb1-8.png", "../assets/bb1/bb1-9.png",
-    "../assets/bb1/bb1-10.png", "../assets/bb1/bb1-11.png", "../assets/bb1/bb1-12.png",
-    "../assets/bb1/bb1-13.png");
+    "../assets/bb1/bb1-10.png", "../assets/bb1/bb1-11.png", "../assets/bb1/bb1-12.png");
+    spr.animationDelay = 0;
   }
   if (tp == 1){
     spr.addAnimation ('t2-normal',
@@ -171,8 +171,8 @@ function generateBactSprite(){
     "../assets/bb2/bb2-1.png", "../assets/bb2/bb2-2.png", "../assets/bb2/bb2-3.png",
     "../assets/bb2/bb2-4.png", "../assets/bb2/bb2-5.png", "../assets/bb2/bb2-6.png",
     "../assets/bb2/bb2-7.png", "../assets/bb2/bb2-8.png", "../assets/bb2/bb2-9.png",
-    "../assets/bb2/bb2-10.png", "../assets/bb2/bb2-11.png", "../assets/bb2/bb2-12.png",
-    "../assets/bb2/bb2-13.png");
+    "../assets/bb2/bb2-10.png", "../assets/bb2/bb2-11.png", "../assets/bb2/bb2-12.png");
+    spr.animationDelay = 0;
   }
 
   if (tp == 2){
@@ -182,8 +182,8 @@ function generateBactSprite(){
     "../assets/bb3/bb3-1.png", "../assets/bb3/bb3-2.png", "../assets/bb3/bb3-3.png",
     "../assets/bb3/bb3-4.png", "../assets/bb3/bb3-5.png", "../assets/bb3/bb3-6.png",
     "../assets/bb3/bb3-7.png", "../assets/bb3/bb3-8.png", "../assets/bb3/bb3-9.png",
-    "../assets/bb3/bb3-10.png", "../assets/bb3/bb3-11.png", "../assets/bb3/bb3-12.png",
-    "../assets/bb3/bb3-13.png");
+    "../assets/bb3/bb3-10.png", "../assets/bb3/bb3-11.png", "../assets/bb3/bb3-12.png");
+    spr.animationDelay = 0;
   }
   return spr;
 }
@@ -216,7 +216,9 @@ function updateBacteria(){
               bactGroup[j].changeAnimation('t3-explosion');
             }
             explosionStart = 9;
-            bactGroup[j].life = 25;
+            bactGroup[j].animationDelay = 0;
+            console.log(bactGroup[j].animationDelay);
+            bactGroup[j].life = 30;
             bactSound.play();
             break;
           }
@@ -234,16 +236,27 @@ function generateNutrSprite(t){
   spr.velocity.y = getRnd(1, 2);
   t = getRnd(0,1);
   if (t == 0){
-    spr.addAnimation ('type1',
-          "../assets/new/c.png"
-
+    spr.addAnimation ('circle',
+          "../assets/circle/circle.png"
     );
+    spr.addAnimation ('circle-explosion',
+          "../assets/circle/circle-1.png", "../assets/circle/circle-2.png", "../assets/circle/circle-3.png",
+          "../assets/circle/circle-4.png", "../assets/circle/circle-5.png", "../assets/circle/circle-6.png",
+          "../assets/circle/circle-7.png", "../assets/circle/circle-8.png", "../assets/circle/circle-9.png",
+          "../assets/circle/circle-10.png", "../assets/circle/circle-11.png", "../assets/circle/circle-12.png",
+    );
+    spr.frameDelay = 0;
   } else {
-    spr.addAnimation ('type2',
-          "../assets/n4.png",
-          "../assets/n5.png",
-          "../assets/n6.png"
+    spr.addAnimation ('triangle',
+          "../assets/triangle/triangle.png"
     );
+    spr.addAnimation ('triangle-explosion',
+          "../assets/triangle/triangle-1.png", "../assets/triangle/triangle-2.png", "../assets/triangle/triangle-3.png",
+          "../assets/triangle/triangle-4.png", "../assets/triangle/triangle-5.png", "../assets/triangle/triangle-6.png",
+          "../assets/triangle/triangle-7.png", "../assets/triangle/triangle-8.png", "../assets/triangle/triangle-9.png",
+          "../assets/triangle/triangle-10.png", "../assets/triangle/triangle-11.png", "../assets/triangle/triangle-12.png",
+    );
+    spr.frameDelay = 0;
   }
   return spr;
 }
@@ -252,21 +265,22 @@ function updateNutrients(){
   for (let p = nutrGroup.length - 1; p >= 0; p--)
   {
     if (nutrGroup[p].overlap(ship.sprite)){
-      if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'type1') {
-        nutrGroup[p].remove();
+      if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'circle') {
+        nutrGroup[p].changeAnimation('circle-explosion');
+        nutrGroup[p].life = 30;
         playerScore ++;
         barWidth+=5;
       }
 
-      if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'type2') {
-        nutrGroup[p].remove();
+      if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'triangle') {
+        nutrGroup[p].changeAnimation('triangle-explosion');
+        nutrGroup[p].life = 30;
         playerScore ++;
         barWidth+=5;
-        nutrSound.play();
+        console.log("I am in overlap with triangle");
       }
 
     }
-    console.log(nutrGroup[p].position.y);
     if (nutrGroup[p].position.y > innerHeight*0.8){
       nutrGroup[p].life = 0;
     }

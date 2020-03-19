@@ -7,10 +7,10 @@ class Ship {
     this.shipMain.addAnimation('normal',
       "../assets/char2.png"
     );
-    this.shipMain.addAnimation('beamTr',
+    this.shipMain.addAnimation('beamC',
       "../assets/new/claw-triangle.png"
     );
-    this.shipMain.addAnimation('beamC',
+    this.shipMain.addAnimation('beamTr',
       "../assets/new/claw-circle.png"
     );
     this.shipMain.addAnimation('zap',
