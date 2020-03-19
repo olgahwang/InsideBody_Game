@@ -18,6 +18,8 @@ let ship, shipX, shipY;
 let newBac;
 let barWidth = 10;
 let explosionStart = -1;
+let char1;
+let currentNutrients, producedGoods;
 
 //score and time
 let playerScore, time;
@@ -37,12 +39,13 @@ function preload() {
   bgImage = loadImage("../assets/backgroundGood.jpg");
   shipImage = loadImage("../assets/char2.png");
   shipX = windowWidth * 0.4;
-  shipY = windowHeight * 0.765;
+  shipY = windowHeight * 0.758;
   playerScore = 0;
   circeRounded = loadFont('../fonts/CirceRounded.otf');
   nutrGroup = new Group();
   bactGroup = new Group();
   lazersGroup = new Group();
+  producedGoods = new Group();
   food[0] = new Apple;
 }
 
@@ -75,10 +78,11 @@ function setup() {
       }
     }
 
-  /*for (i = 0; i < 5; i++) {
-    let newNutr = generateNutrSprite();
-    nutrGroup.add(newNutr);
-  }*/
+  char1 = createSprite(innerWidth*0.055, innerHeight*0.713);
+  char1.scale=0.6;
+  char1.addAnimation('char1-normal', "../assets/char1.png");
+  char1.changeAnimation('char1-normal');
+
   //data
   serial = new p5.SerialPort();
   serial.list();
@@ -156,7 +160,7 @@ function generateBactSprite(){
   let tp = getRnd(0,2);
   if (tp == 0){
     spr.addAnimation ('t1-normal',
-          "../assets/bb1/bb1.png");
+          "../assets/bb-07.svg");
     spr.addAnimation ('t1-explosion',
     "../assets/bb1/bb1-1.png", "../assets/bb1/bb1-2.png", "../assets/bb1/bb1-3.png",
     "../assets/bb1/bb1-4.png", "../assets/bb1/bb1-5.png", "../assets/bb1/bb1-6.png",
@@ -166,7 +170,7 @@ function generateBactSprite(){
   }
   if (tp == 1){
     spr.addAnimation ('t2-normal',
-          "../assets/bb2/bb2.png");
+          "../assets/bb-08.svg");
     spr.addAnimation ('t2-explosion',
     "../assets/bb2/bb2-1.png", "../assets/bb2/bb2-2.png", "../assets/bb2/bb2-3.png",
     "../assets/bb2/bb2-4.png", "../assets/bb2/bb2-5.png", "../assets/bb2/bb2-6.png",
@@ -177,7 +181,7 @@ function generateBactSprite(){
 
   if (tp == 2){
     spr.addAnimation ('t3-normal',
-          "../assets/bb3/bb3.png");
+          "../assets/bb-09.svg");
     spr.addAnimation ('t3-explosion',
     "../assets/bb3/bb3-1.png", "../assets/bb3/bb3-2.png", "../assets/bb3/bb3-3.png",
     "../assets/bb3/bb3-4.png", "../assets/bb3/bb3-5.png", "../assets/bb3/bb3-6.png",
@@ -245,6 +249,7 @@ function generateNutrSprite(t){
           "../assets/circle/circle-7.png", "../assets/circle/circle-8.png", "../assets/circle/circle-9.png",
           "../assets/circle/circle-10.png", "../assets/circle/circle-11.png", "../assets/circle/circle-12.png",
     );
+    spr.changeAnimation('circle');
     spr.frameDelay = 0;
   } else {
     spr.addAnimation ('triangle',
@@ -256,6 +261,8 @@ function generateNutrSprite(t){
           "../assets/triangle/triangle-7.png", "../assets/triangle/triangle-8.png", "../assets/triangle/triangle-9.png",
           "../assets/triangle/triangle-10.png", "../assets/triangle/triangle-11.png", "../assets/triangle/triangle-12.png",
     );
+    spr.changeAnimation('triangle');
+    spr.scale=0.7;
     spr.frameDelay = 0;
   }
   return spr;
