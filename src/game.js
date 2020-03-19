@@ -23,7 +23,11 @@ let currentNutrients, producedGoods;
 
 //score and time
 let playerScore, time;
+let curNutX = innerWidth*0.47;
+let curNutY = innerHeight*0.935;
 
+let goodsX = innerWidth*0.65;
+let goodsY = innerHeight*0.935;
 
 //data
 let serial;
@@ -45,6 +49,7 @@ function preload() {
   nutrGroup = new Group();
   bactGroup = new Group();
   lazersGroup = new Group();
+  currentNutrients = new Group();
   producedGoods = new Group();
   food[0] = new Apple;
 }
@@ -131,13 +136,23 @@ function draw() {
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
-  //text(playerScore, innerWidth*0.58, innerHeight*0.88);
-  drawSprites(nutrGroup, bactGroup);
+  text(playerScore, innerWidth*0.58, innerHeight*0.88);
+
+  if (currentNutrients.length == 3){
+    let spr = createSprite(goodsX, goodsY);
+    spr.addAnimation('normal', "../assets/bacteria.png");
+    spr.scale = 0.6;
+    producedGoods.add(spr);
+    currentNutrients.removeSprites();
+    goodsX+=50;
+    curNutX = innerWidth*0.47
+  }
+  drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
   //barWidth = map(score, 0, 200, 10, 150, true);
   //console.log(barWidth);
-  rect(innerWidth*0.56, innerHeight*0.94,barWidth, 35);
+  rect(innerWidth*0.025, innerHeight*0.183,barWidth, 25);
 }
 
 
@@ -277,6 +292,20 @@ function updateNutrients(){
         nutrGroup[p].life = 30;
         playerScore ++;
         barWidth+=5;
+        let spr = createSprite(curNutX, curNutY);
+        spr.addAnimation('normal', "../assets/circle/circle.png");
+        currentNutrients.add(spr);
+        curNutX+=60;
+        /*//let xx = curNutX;
+        let spr = createSprite(1, curNutY);
+        spr.addAnimation('circle', "../assets/circle/circle.png");
+        spr.scale = 0.8;
+        currentNutrients.add(spr);
+        //curNutX+=10;
+        nutrGroup[p].life = 30;
+        playerScore ++;
+        barWidth+=5;
+        //beamDelay--;*/
       }
 
       if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'triangle') {
@@ -284,7 +313,10 @@ function updateNutrients(){
         nutrGroup[p].life = 30;
         playerScore ++;
         barWidth+=5;
-        console.log("I am in overlap with triangle");
+        let spr = createSprite(curNutX, curNutY);
+        spr.addAnimation('normal', "../assets/triangle/triangle.png");
+        currentNutrients.add(spr);
+        curNutX+=60;
       }
 
     }
@@ -292,11 +324,6 @@ function updateNutrients(){
       nutrGroup[p].life = 0;
     }
   }
-
-  /*if (nutrGroup.length < 2 && nutrGroup.length >= 0){
-    let newNutr = generateNutrSprite();
-    nutrGroup.add(newNutr);
-  }*/
 }
 
 function bacNutrOverlap(){

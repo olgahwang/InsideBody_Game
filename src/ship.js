@@ -58,7 +58,6 @@ class Ship {
         this.shipMain.changeAnimation('zap');
         this.shootDelay = this.maxShootDelay;
         lazers.push(new Lazer(this.x+35, this.y));
-        console.log("Hi");
         zapSound.play();
       }
     }
@@ -67,7 +66,7 @@ class Ship {
       if (this.beamTrLife == 0 )
       {
         this.shipMain.changeAnimation('beamC');
-        this.beamCLife = 30;
+        this.beamCLife = 10;
         beamSound.play();
       }
     }
@@ -76,7 +75,7 @@ class Ship {
       if (this.beamCLife == 0 )
       {
         this.shipMain.changeAnimation('beamTr');
-        this.beamTrLife = 30;
+        this.beamTrLife = 10;
         beamSound.play();
       }
     }
