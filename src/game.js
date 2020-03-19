@@ -16,7 +16,7 @@ var lazers = [];
 let nutriCount = 5;
 let ship, shipX, shipY;
 let newBac;
-let barWidth = 10;
+let barWidth = 90;
 let explosionStart = -1;
 let char1;
 let currentNutrients, producedGoods;
@@ -109,14 +109,14 @@ function setup() {
 function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
-  //checkBacteria();
+
   let ship_position = parseFloat(sensor_data);
   if(ship_position){
     ship.draw(ship_position);
   } else {
     ship.draw(0);
   }
-  //console.log(time % 5);
+
   if (time % 5 == 0){
     if (bactGroup.length < 2) {
       newBac = generateBactSprite();
@@ -136,7 +136,7 @@ function draw() {
   textFont(circeRounded);
   textAlign(CENTER);
   textSize(50);
-  text(playerScore, innerWidth*0.58, innerHeight*0.88);
+  text(playerScore, innerWidth*0.942, innerHeight*0.95);
 
   if (currentNutrients.length == 3){
     let spr = createSprite(goodsX, goodsY);
@@ -146,12 +146,12 @@ function draw() {
     currentNutrients.removeSprites();
     goodsX+=50;
     curNutX = innerWidth*0.47
+    playerScore++;
   }
   drawSprites(nutrGroup, bactGroup, currentNutrients, producedGoods);
   fill(56, 64, 143);
   noStroke();
-  //barWidth = map(score, 0, 200, 10, 150, true);
-  //console.log(barWidth);
+  barWidth = 90-map(nutriCount, 0, 200, 0, 90);
   rect(innerWidth*0.025, innerHeight*0.183,barWidth, 25);
 }
 
@@ -290,29 +290,17 @@ function updateNutrients(){
       if (ship.sprite.getAnimationLabel() == 'beamC' && nutrGroup[p].getAnimationLabel() == 'circle') {
         nutrGroup[p].changeAnimation('circle-explosion');
         nutrGroup[p].life = 30;
-        playerScore ++;
-        barWidth+=5;
+        //barWidth+=5;
         let spr = createSprite(curNutX, curNutY);
         spr.addAnimation('normal', "../assets/circle/circle.png");
         currentNutrients.add(spr);
         curNutX+=60;
-        /*//let xx = curNutX;
-        let spr = createSprite(1, curNutY);
-        spr.addAnimation('circle', "../assets/circle/circle.png");
-        spr.scale = 0.8;
-        currentNutrients.add(spr);
-        //curNutX+=10;
-        nutrGroup[p].life = 30;
-        playerScore ++;
-        barWidth+=5;
-        //beamDelay--;*/
       }
 
       if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'triangle') {
         nutrGroup[p].changeAnimation('triangle-explosion');
         nutrGroup[p].life = 30;
-        playerScore ++;
-        barWidth+=5;
+        //barWidth+=5;
         let spr = createSprite(curNutX, curNutY);
         spr.addAnimation('normal', "../assets/triangle/triangle.png");
         currentNutrients.add(spr);
