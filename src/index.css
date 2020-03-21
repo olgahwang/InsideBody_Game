@@ -101,6 +101,15 @@ body, html {
 img {
 }
 
+button {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
 
 .bg {
   animation: fadein 3s;
@@ -138,7 +147,7 @@ img {
 
   position: fixed;
   bottom: 3%;
-  right: 1%;
+  right: 65px;
 
   display: flex;
   justify-content: flex-end;
@@ -193,6 +202,8 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
   background-image: url("../assets/backgroundmain.jpg");
 }
 
@@ -214,6 +225,62 @@ img {
   margin-left: 500px;
   display: flex;
 }
+
+#menuElements {
+  position: absolute;
+  right: 70px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+#menuText {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+#scrollTitle {
+  display: flex;
+  flex-direction: row;
+}
+
+#menuTiles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#pizzaLevel {
+  display: flex;
+  align-items: center;
+  align-content;
+  border: 4px solid ##8B395D;
+}
+
+#pizzaLevel:hover {
+  border: 4px solid #5FAD56;
+  border-radius: 12px;
+}
+
+#saladLevel {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border: 4px solid ##8B395D;
+}
+
+#saladLevel:hover {
+  border: 4px solid #5FAD56;
+  border-radius: 12px;
+}
+
 
 #onboarding1 {
   background-position: center;

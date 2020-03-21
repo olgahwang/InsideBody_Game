@@ -14,13 +14,34 @@
     <!--<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
     <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>-->
     <div id="mainMenuDiv" class="bg">
+      <div id="menuElements">
+        <img src="../assets/logo.svg" style="width: 100%; margin-top: 50px">
+        <div id="menuText">
+          <div><h4 style="margin-top: 35px">select level</h4></div>
+          <div id="scrollTitle"><p>SCROLL</p><img src="../assets/crank.png" style="height: 80%">
+        </div>
+      </div>
+      <div id="menuTiles">
+        <div id="pizzaLevel" style="width: 43%" onclick="pizzaChosen()">
+          <button onclick="pizzaChosen()">
+            <img style="width: 100%;" src="../assets/pizza-tile.png">
+          </button>
+        </div>
+        <div id="saladLevel" style="width: 43%" onclick="saladChosen()">
+          <button onclick="saladChosen()">
+            <img style="width: 100%; padding: 1px;" src="../assets/salad-tile.png">
+          </button>
+        </div>
+      </div>
       <button class="continueButton" onclick="startClicked()">
           <div id="stompContinueButton" class="buttonStyle">
             <p>STOMP TO START</p>
             <img id="stompContinue" src="../assets/stomp-continue.png">
           </div>
       </button>
+
     </div>
+  </div>
 
     <div class="wrapper" id="onboardingWrapper">
       <div id="onboarding1" class="onboarding">
@@ -123,7 +144,7 @@
             <img src="../assets/bacteria.png">
           </div>
         </div>
-        <button class="continueButton" onclick="window.location.href = './game.html';">
+        <button class="continueButton" onclick="continueToGame()">
             <div id="stompContinueButton" class="buttonStyle">
               <p>NEXT</p>
               <img id="stompContinue" src="../assets/stomp-continue.png">
