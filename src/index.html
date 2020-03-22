@@ -21,18 +21,27 @@
           <div id="scrollTitle"><p>SCROLL</p><img src="../assets/crank.png" style="height: 80%">
         </div>
       </div>
-      <div id="menuTiles">
-        <div id="pizzaLevel" style="width: 43%" onclick="pizzaChosen()">
-          <button onclick="pizzaChosen()">
-            <img style="width: 100%;" src="../assets/pizza-tile.png">
-          </button>
-        </div>
-        <div id="saladLevel" style="width: 43%" onclick="saladChosen()">
-          <button onclick="saladChosen()">
-            <img style="width: 100%; padding: 1px;" src="../assets/salad-tile.png">
-          </button>
-        </div>
+      <div id="cards">
+        <button id="pizzaLevel" width="40%" style="padding: 0; margin-right: 15%;">
+          <img  height="100%" src="../assets/salad-tile.png">
+        </button>
+        <button id="saladLevel" width="40%" style="padding: 0;">
+          <img height="100%" src="../assets/pizza-tile.png">
+        </button>
       </div>
+      <!--<div id="menuTiles">
+        <div id="saladLevel" style="width: 50%" onclick="saladChosen()">
+          <button style="width: 100%" onclick="saladChosen()">
+            <img style="width: 100%;" src="../assets/salad-tile.png">
+          </button>
+        </div>
+
+        <div id="pizzaLevel" style="width: 50%" onclick="pizzaChosen()">
+          <button style="width: 100%" onclick="pizzaChosen()">
+            <img style="width: 100%;" src="../assets/salad-tile.png">
+          </button>
+        </div>
+      </div>-->
       <button class="continueButton" onclick="startClicked()">
           <div id="stompContinueButton" class="buttonStyle">
             <p>STOMP TO START</p>

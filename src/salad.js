@@ -117,7 +117,7 @@ function draw() {
     ship.draw(0);
   }
 
-  if (time % 5 == 0){
+  if (time % 10 == 0){
     if (bactGroup.length < 2) {
       newBac = generateBactSprite();
       bactGroup.add(newBac);
