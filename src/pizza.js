@@ -11,7 +11,6 @@ let zapSound, nutrSound, bactSound, beamSound;
 //ship, nutrients and bacterias
 var firingRate = 25; //  <--- tells you how often you can shoot a lazer
 var nutrGroup, bactGroup;
-var food = [];
 var lazers = [];
 let nutriCount = 5;
 let ship, shipX, shipY;
@@ -51,7 +50,6 @@ function preload() {
   lazersGroup = new Group();
   currentNutrients = new Group();
   producedGoods = new Group();
-  food[0] = new Apple;
 }
 
 function setup() {
@@ -89,7 +87,8 @@ function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
 
-  let ship_position = parseFloat(sensor_data);
+  //let ship_position = parseFloat(sensor_data);
+  ship_position = 1;
   if(ship_position){
     ship.draw(ship_position);
   } else {
