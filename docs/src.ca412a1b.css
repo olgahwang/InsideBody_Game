@@ -19,6 +19,11 @@
 }
 
 @font-face {
+  font-family: "DottiesVanilla-ExtraBold";
+  src: url("https://olgahwang.github.io/InsideBody_Game/DottiesVanilla-ExtraBold.a7534660.otf");
+}
+
+@font-face {
   font-family: "DottiesChocolate-Regular";
   src: url("https://olgahwang.github.io/InsideBody_Game/DottiesVanilla-Bold.364b1346.otf");
 }
@@ -83,7 +88,7 @@ h4 {
 p {
   color: #FFE2E2;
   font-family: "DottiesVanilla-Light";
-  font-size: 32px;
+  font-size: 24px;
   line-height: 120%;
 }
 
@@ -93,7 +98,13 @@ body, html {
   margin: 0;
 }
 
-img {
+button {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 
@@ -106,7 +117,7 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://olgahwang.github.io/InsideBody_Game/backgroundmain.16c8d588.jpg");
+  background-image: url("https://olgahwang.github.io/InsideBody_Game/backgroundmain.945f0779.jpg");
 }
 
 .buttonStyle {
@@ -116,18 +127,45 @@ img {
   align-items: right;
 }
 
-.continueButton {
-  width: 30%;
+.buttonsWidget {
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
   flex-direction: row;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.continueButton {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: none;
   border: none;
+  outline: none;
+
+  position: fixed;
+  bottom: 3%;
+  right: 65px;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.continueButton:onclick {
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-row-reverse;
+}
+
+.continueButton:hover {
+  opacity: 0.8;
 }
 
 .wrapper {
@@ -161,7 +199,9 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://olgahwang.github.io/InsideBody_Game/backgroundmain.16c8d588.jpg");
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://olgahwang.github.io/InsideBody_Game/backgroundmain.945f0779.jpg");
 }
 
 .onboarding {
@@ -181,6 +221,61 @@ img {
   margin-top: 405px;
   margin-left: 500px;
   display: flex;
+}
+
+#menuElements {
+  position: absolute;
+  right: 70px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+#menuText {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+#scrollTitle {
+  display: flex;
+  flex-direction: row;
+}
+
+
+#cards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#pizzaLevel {
+  background-color: #FFE2E2;
+  border: 6px solid #8B395D;
+  border-radius: 12px;
+}
+
+#pizzaLevel:hover {
+  box-shadow: 0px 0px 0px 4px #5FAD56;
+}
+
+
+#saladLevel {
+  background-color: #FFE2E2;
+  border: 6px solid #8B395D;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 4px #5FAD56;
+}
+
+#saladLevel:hover {
+  box-shadow: 0px 0px 0px 4px #5FAD56;
 }
 
 #onboarding1 {
@@ -213,46 +308,21 @@ img {
   margin-left: 25px;
 }
 
-@keyframes particlesAppearance {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.particlesAppearanceClass{
-  opacity: 0;
-}
-
-#p1 {
-  width: 80px;
-  height: 80px;
+#p1 img{
   margin-right: 20px;
-  animation: particlesAppearance 2s;
 }
 
-#p2 {
-  width: 80px;
-  height: 80px;
+#p2 img{
   margin-right: 20px;
-  animation-delay: 2s;
-  animation: particlesAppearance 2s;
 }
 
-#p3 {
-  width: 80px;
-  height: 80px;
-  margin-right: 300px;
-  animation-delay: 4s;
-  animation: particlesAppearance 2s;
+#p3 img{
+  margin-right: 20px;
 }
 
-#p4 {
-  width: 80px;
-  height: 80px;
-  animation: particlesAppearance 2s delay 3s;
+#p4 img {
+  margin-left: 300px;
 }
 
 
-/*# sourceMappingURL=https://olgahwang.github.io/InsideBody_Game/src.2c87798e.css.map */
+/*# sourceMappingURL=https://olgahwang.github.io/InsideBody_Game/src.ca412a1b.css.map */

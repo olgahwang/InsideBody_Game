@@ -30,11 +30,11 @@ let goodsX = innerWidth*0.65;
 let goodsY = innerHeight*0.935;
 
 //data
-let serial;
+/*let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
 var portName = '/dev/tty.usbmodem14201';
 let cur = 0, prev = 0;
-let sensor_data = '';
+let sensor_data = '';*/
 
 
 function preload() {
@@ -330,7 +330,7 @@ function bacNutrOverlap(){
 
 
 // Got the list of ports
-function gotList(thelist) {
+/*function gotList(thelist) {
   print("List of Serial Ports:");
   // theList is an array of their names
   for (let i = 0; i < thelist.length; i++) {
@@ -362,4 +362,4 @@ function gotData() {
   } else {
     sensor_data = '';
   }
-}
+}*/
