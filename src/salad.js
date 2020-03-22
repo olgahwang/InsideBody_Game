@@ -89,7 +89,7 @@ function setup() {
   char1.changeAnimation('char1-normal');
 
   //data
-  serial = new p5.SerialPort();
+  /*serial = new p5.SerialPort();
   serial.list();
   serial.open(portName);
   serial.on('connected', serverConnected);
@@ -97,7 +97,7 @@ function setup() {
   serial.on('data', gotData);
   serial.on('error', gotError);
   serial.on('open', gotOpen);
-  serial.on('close', gotClose);
+  serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
   zapSound = loadSound('../sounds/shoot.mp3');
   nutrSound = loadSound('../sounds/hit.mp3');

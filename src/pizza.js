@@ -63,33 +63,13 @@ function setup() {
   pX = getRnd(0, 1100);
   pY = getRnd(0, 200);
   score = 0;
-  console.log(food[0].trNum+food[0].cirNum);
-
-    let count = food[0].trNum + food[0].cirNum;
-    let tr = food[0].trNum;
-    let cir = food[0].cirNum;
-    while (count != 0){
-      let type = getRnd(0,1);
-      console.log("Inside while");
-      if (type == 0 && tr > 0) {
-        nutrGroup.add(generateNutrSprite(0));
-        count--;
-        tr--;
-      }
-      if (type == 1 && cir > 0){
-        nutrGroup.add(generateNutrSprite(1));
-        count--;
-        cir--;
-      }
-    }
-
   char1 = createSprite(innerWidth*0.055, innerHeight*0.713);
   char1.scale=0.6;
   char1.addAnimation('char1-normal', "../assets/char1.png");
   char1.changeAnimation('char1-normal');
 
   //data
-  serial = new p5.SerialPort();
+  /*serial = new p5.SerialPort();
   serial.list();
   serial.open(portName);
   serial.on('connected', serverConnected);
@@ -97,13 +77,12 @@ function setup() {
   serial.on('data', gotData);
   serial.on('error', gotError);
   serial.on('open', gotOpen);
-  serial.on('close', gotClose);
+  serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
   zapSound = loadSound('../sounds/shoot.mp3');
   nutrSound = loadSound('../sounds/hit.mp3');
   bactSound = loadSound('../sounds/explosion.mp3');
   beamSound = loadSound('../sounds/pick.mp3');
-  console.log(zapSound);
 }
 
 function draw() {
