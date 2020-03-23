@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "CirceRounded";
+  src: url("https://olgahwang.github.io/InsideBody_Game/CirceRounded.3753a206.otf");
+}
+
+#myCanvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: black;
+}
+
+
+/*# sourceMappingURL=https://olgahwang.github.io/InsideBody_Game/style.31ec0ac3.css.map */

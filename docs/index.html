@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://olgahwang.github.io/InsideBody_Game/src.690d0b28.css">
+    <link rel="stylesheet" type="text/css" href="https://olgahwang.github.io/InsideBody_Game/animate.a5d6970e.css">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
+    <script src="https://olgahwang.github.io/InsideBody_Game/src.0600a096.js"></script>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <!--<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>-->
+    <div id="mainMenuDiv" class="bg">
+      <div id="menuElements">
+        <img src="https://olgahwang.github.io/InsideBody_Game/logo.c14bfb8b.svg" style="width: 100%; margin-top: 50px">
+        <div id="menuText">
+          <div><h4 style="margin-top: 25px">select level</h4></div>
+          <div id="scrollTitle">
+            <p>SCROLL</p>
+            <img src="https://olgahwang.github.io/InsideBody_Game/crank.51c22cd3.png" style="height: 80%">
+          </div>
+        </div>
+      <div id="cards">
+        <div id="saladLevel" width="35%" onclick="saladChosen()">
+          <img style="padding: 15px 25px 15px 25px" src="https://olgahwang.github.io/InsideBody_Game/salad-tile.658d9fcb.png">
+        </div>
+        <div id="pizzaLevel" width="35%" onclick="pizzaChosen()">
+          <img style="padding: 15px 25px 15px 25px" src="https://olgahwang.github.io/InsideBody_Game/pizza-tile.dcfa77fd.png">
+        </div>
+      </div>
+      <button class="continueButton" onclick="startClicked()">
+          <div id="stompContinueButton" class="buttonStyle">
+            <p>STOMP TO START</p>
+            <img id="stompContinue" src="https://olgahwang.github.io/InsideBody_Game/stomp-continue.330e46a9.png">
+          </div>
+      </button>
+
+    </div>
+  </div>
+
+    <div class="wrapper" id="onboardingWrapper">
+      <div id="onboarding1" class="onboarding">
+        <h4>did you know?</h4>
+        <p style="line-height: 130%">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">your gut is full of </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 32px;">
+            good bacteria
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            that work like a factory to help you
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 32px;">
+            digest food
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            and
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 32px;">
+            fight off
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">
+            intruders!
+          </span>
+        </p>
+          <button class="continueButton" onclick="showSecondPage()">
+              <div id="stompContinueButton" class="buttonStyle">
+                <p>NEXT</p>
+                <img id="stompContinue" src="https://olgahwang.github.io/InsideBody_Game/stomp-continue.330e46a9.png">
+              </div>
+          </button>
+      </div>
+      <div id="onboarding2" class="onboarding">
+        <p style="line-height: 170%; text-align: left;">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px; line-height: 160%;">Your job as the </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 48px;">
+            good bacteria
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px;">
+             is to
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 48px;">
+            collect fiber
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 48px;">
+            and
+          </span>
+          <span style="font-family: DottiesVanilla-ExtraBold; font-size: 48px;">
+            zap bad bacteria.
+          </span>
+        </p>
+        <div class="onboardingContent">
+          <div class="wrapper-30">
+            <p style="margin-top:33px; line-height: 150%;">
+              <span style="font-family: DottiesVanilla-Regular; font-size: 27px;">lean </span>
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                left and right
+              </span>
+              <span style="font-family: DottiesVanilla-Regular; font-size: 27px;">
+                to move under falling items
+              </span>
+            </p>
+            <img style="margin-top: 30px;" class="wrapper30Image" src="https://olgahwang.github.io/InsideBody_Game/balanceBoard.151bfbeb.png">
+          </div>
+          <div class="wrapper-30">
+            <p style="line-height: 110%; padding-top: 10px;">
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">slide up</span>
+              to collect
+              <span><img width="20px" src="https://olgahwang.github.io/InsideBody_Game/triangle.0fdf2e9f.png"></span><br>
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                rotate crank
+              </span>
+              to collect
+              <span><img width="20px" src="https://olgahwang.github.io/InsideBody_Game/circle.56f56880.png"></span>
+            </p>
+            <img class="wrapper30Image" src="https://olgahwang.github.io/InsideBody_Game/controller.f196f3df.png">
+          </div>
+          <div class="wrapper-30">
+            <p style="margin-top:33px; line-height: 150%;">
+              <span style="font-family: DottiesVanilla-ExtraBold; letter-spacing: 1px; font-size: 27px;">
+                stomp
+              </span>
+              to zap bad bacteria
+            </p>
+            <img style="margin-top: 40px;" class="wrapper30Image" src="https://olgahwang.github.io/InsideBody_Game/stompPad.e7d89dfb.png">
+          </div>
+        </div>
+        <button class="continueButton" onclick="showThirdPage()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>NEXT</p>
+              <img id="stompContinue" src="https://olgahwang.github.io/InsideBody_Game/stomp-continue.330e46a9.png">
+            </div>
+        </button>
+      </div>
+      <div id="onboarding3" class="onboarding">
+        <p style="text-align: left; line-height: 44px;">
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">The factory makes </span>
+          <span style="font-size: 32px; letter-spacing: 1px; font-family: DottiesVanilla-ExtraBold;font-style: normal;">
+            health boosts
+          </span>
+          <span style="font-family: DottiesVanilla-Regular; font-size: 32px;">for the body with the fiber you collect.</span>
+        </p>
+        <div class="particlesOnboarding">
+          <div id="p1" class="particle animated zoomIn">
+            <img src="https://olgahwang.github.io/InsideBody_Game/triangle.8be47fcc.png">
+          </div>
+          <div id="p2" class="particle animated zoomIn delay-1s">
+            <img src="https://olgahwang.github.io/InsideBody_Game/circle.90b90958.png">
+          </div>
+          <div id="p3" class="particle animated zoomIn delay-2s">
+            <img src="https://olgahwang.github.io/InsideBody_Game/circle.90b90958.png">
+          </div>
+          <div id="p4" class="particle animated zoomIn delay-3s">
+            <img src="https://olgahwang.github.io/InsideBody_Game/bacteria.db08b3fa.png">
+          </div>
+        </div>
+        <button class="continueButton" onclick="continueToGame()">
+            <div id="stompContinueButton" class="buttonStyle">
+              <p>NEXT</p>
+              <img id="stompContinue" src="https://olgahwang.github.io/InsideBody_Game/stomp-continue.330e46a9.png">
+            </div>
+        </button>
+      </div>
+    </div>
+
+  </body>
+</html>
