@@ -5,12 +5,12 @@
   "main": "index.js",
   "engines": {
     "node": "13.7.0",
-    "npm" : "6.13.6"
+    "npm": "6.13.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "python3 -m http.server 7800",
-    "build": "parcel build src/index.html --no-minify --public-url https://olgahwang.github.io/InsideBody_Game; rm -rf docs; mv dist docs;"
+    "build": "parcel build src/index.html src/pizza.html src/salad.html --no-minify --public-url https://olgahwang.github.io/InsideBody_Game; rm -rf docs; mv dist docs;"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,5 @@
     "doc": "docs",
     "lib": "lib"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
