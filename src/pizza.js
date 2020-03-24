@@ -53,7 +53,7 @@ function preload() {
 }
 
 function setup() {
-
+  barWidth = 88-map(nutriCount, 0, 50, 0, 88);
   let myCanvas = createCanvas(windowWidth, windowHeight);
   myCanvas.parent("myCanvas");
   background(bgImage);
