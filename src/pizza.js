@@ -19,6 +19,7 @@ let barWidth = 90;
 let explosionStart = -1;
 let char1;
 let currentNutrients, producedGoods;
+let propionateCount, acetateCount, butyrateCount;
 
 //score and time
 let playerScore, time;
@@ -50,6 +51,9 @@ function preload() {
   lazersGroup = new Group();
   currentNutrients = new Group();
   producedGoods = new Group();
+  propionateCount = 0;
+  acetateCount = 0;
+  butyrateCount = 0;
 }
 
 function setup() {
