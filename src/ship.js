@@ -86,6 +86,7 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamC');
         this.beamCLife = 10;
+        beamSound.play();
       }
     }
 
@@ -94,6 +95,7 @@ class Ship {
       {
         this.shipMain.changeAnimation('beamTr');
         this.beamTrLife = 10;
+        beamSound.play();
       }
     }
     /*if (a > 0) {

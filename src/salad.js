@@ -82,9 +82,9 @@ function setup() {
   serial.on('close', gotClose);*/
   //newBac = generateBactSprite();
   zapSound = loadSound('../sounds/shoot.mp3');
-  nutrSound = loadSound('../sounds/hit.mp3');
+  nutrSound = loadSound('../assets/beam-collect.mp3');
   bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../sounds/pick.mp3');
+  beamSound = loadSound('../assets/beam-shoot.mp3');
 }
 
 function draw() {
@@ -113,9 +113,9 @@ function draw() {
   } else {
     if (nutriCount >= 100){
       //location.href ="./results.html";
-      var curWindow = document.getElementById("myCanvas");
-      curWindow.style.display = "none";
-      document.getElementById("resultsWindow").style.display = "flex";
+      // var curWindow = document.getElementById("myCanvas");
+      // curWindow.style.display = "none";
+      // document.getElementById("resultsWindow").style.display = "flex";
     }
   }
   bacNutrOverlap();
@@ -277,11 +277,13 @@ function updateNutrients(){
         spr.addAnimation('normal', "../assets/circle/circle.png");
         currentNutrients.add(spr);
         curNutX+=60;
+        nutrSound.play();
       }
 
       if (ship.sprite.getAnimationLabel() == 'beamTr' && nutrGroup[p].getAnimationLabel() == 'triangle') {
         nutrGroup[p].changeAnimation('triangle-explosion');
         nutrGroup[p].life = 30;
+        nutrSound.play();
         //barWidth+=5;
         let spr = createSprite(curNutX, curNutY);
         spr.addAnimation('normal', "../assets/triangle/triangle.png");
