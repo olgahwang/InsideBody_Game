@@ -9,6 +9,11 @@
 }
 
 @font-face {
+  font-family: "DottiesVanilla-HeavyItalic";
+  src: url("../fonts/DottiesVanilla-HeavyItalic.otf");
+}
+
+@font-face {
   font-family: "DottiesVanilla-Regular";
   src: url("../fonts/DottiesVanilla-Regular.otf");
 }
@@ -288,4 +293,23 @@ body, html {
 
 #p4 img {
   margin-left: 250px;
+}
+
+/*----------*/
+#resultsWindow {
+  display: none;
+  width: 100%;
+  flex-direction: row;
+  margin:20px 50px 50px 50px;
+}
+
+#fiberWindow {
+  display: flex;
+  flex-direction: row;
+}
+
+#leftContent {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
 }
