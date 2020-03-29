@@ -30,7 +30,7 @@ let curNutY = innerHeight*0.935;
 let goodsX = innerWidth*0.65;
 let goodsY = innerHeight*0.935;
 let countDown = 999;
-
+let lim1 = 1.25, lim2 = 1.5, lim3 = 3;
 //data
 /*let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
@@ -105,7 +105,7 @@ function draw() {
     }
   }
 
-  if (nutrGroup.length < 7 && nutriCount < 70) {
+  if (nutrGroup.length < lim3 && nutriCount < 70) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
     //barWidth+=1;
@@ -238,7 +238,7 @@ function generateNutrSprite(t){
   let x = getRnd(innerWidth*0.17, innerWidth-innerWidth*0.18);
   let y = getRnd(0, 50);
   let spr = createSprite(x, y);
-  spr.velocity.y = getRnd(1, 2);
+  spr.velocity.y = getRnd(lim1, lim2);
   t = getRnd(0,1);
   if (t == 0){
     spr.addAnimation ('circle',
