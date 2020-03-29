@@ -28,7 +28,7 @@ let curNutY = innerHeight*0.935;
 
 let goodsX = innerWidth*0.65;
 let goodsY = innerHeight*0.935;
-
+let switchDelay = 10;
 let lim1 = 1, lim2 = 1.25, lim3 = 6;
 //data
 /*let serial;
@@ -110,17 +110,20 @@ function draw() {
   if (nutrGroup.length < lim3 && nutriCount < 100) {
     nutrGroup.add(generateNutrSprite());
     nutriCount++;
-    //barWidth+=1;
+
   } else {
-    if (nutriCount >= 100){
-      var curWindow = document.getElementById("myCanvas");
-      curWindow.style.display = "none";
-      document.getElementById("resultsWindow").style.display = "flex";
-      document.getElementById("triangles").innerHTML = trCount;
-      document.getElementById("circles").innerHTML = cirCount;
-      document.getElementById("acetate").innerHTML = acCount;
-      document.getElementById("propionate").innerHTML = propCount;
-      document.getElementById("butyrate").innerHTML = butCount;
+    if (nutriCount >= 100 && nutrGroup.length == 0){
+      switchDelay--;
+      if (switchDelay == 0){
+        var curWindow = document.getElementById("myCanvas");
+        curWindow.style.display = "none";
+        document.getElementById("resultsWindow").style.display = "flex";
+        document.getElementById("triangles").innerHTML = trCount;
+        document.getElementById("circles").innerHTML = cirCount;
+        document.getElementById("acetate").innerHTML = acCount;
+        document.getElementById("propionate").innerHTML = propCount;
+        document.getElementById("butyrate").innerHTML = butCount;
+      }
     }
   }
   bacNutrOverlap();
@@ -321,7 +324,6 @@ function generateGoodBacteria(){
   if (currentNutrients.length == 3){
     goodsY = innerHeight*0.935;
     goodsX = random(innerWidth*0.624,innerWidth*0.9);
-    console.log(goodsX + " " + goodsY);
     let spr = createSprite(goodsX, goodsY);
     let tp = getRnd(0,2);
     if (tp == 0){

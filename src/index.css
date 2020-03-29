@@ -322,7 +322,7 @@ body, html {
 
 #rightContent {
   display: flex;
-  width: 25%;
+  width: 20%;
   flex-direction: column;
   margin-top: 150px;
 }
