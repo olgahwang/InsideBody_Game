@@ -227,7 +227,7 @@ function updateBacteria(){
             bactGroup[j].animationDelay = 0;
             console.log(bactGroup[j].animationDelay);
             bactGroup[j].life = 30;
-            bactSound.play();
+            //bactSound.play();
             break;
           }
         }
