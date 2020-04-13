@@ -31,11 +31,11 @@ let goodsY = innerHeight*0.935;
 let switchDelay = 10;
 let lim1 = 1, lim2 = 1.25, lim3 = 6;
 //data
-/*let serial;
+let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
 var portName = '/dev/tty.usbmodem14201';
 let cur = 0, prev = 0;
-let sensor_data = '';*/
+let sensor_data = '';
 
 
 function preload() {
@@ -55,10 +55,10 @@ function preload() {
   propCount = 0;
   butCount = 0;
   acCount = 0;
-  zapSound = loadSound('../sounds/shoot.mp3');
+  zapSound = loadSound('../sounds/hitnew.mp3');
   nutrSound = loadSound('../sounds/beam-collect.mp3');
-  bactSound = loadSound('../sounds/explosion.mp3');
-  beamSound = loadSound('../sounds/beam-shoot.mp3');
+  bactSound = loadSound('../sounds/explosion2.mp3');
+  beamSound = loadSound('../sounds/beam-shoot3.mp3');
 }
 
 function setup() {
@@ -76,7 +76,7 @@ function setup() {
   char1.changeAnimation('char1-normal');
 
   //data
-  /*serial = new p5.SerialPort();
+  serial = new p5.SerialPort();
   serial.list();
   serial.open(portName);
   serial.on('connected', serverConnected);
@@ -84,16 +84,15 @@ function setup() {
   serial.on('data', gotData);
   serial.on('error', gotError);
   serial.on('open', gotOpen);
-  serial.on('close', gotClose);*/
+  serial.on('close', gotClose);
   //newBac = generateBactSprite();
 }
 
 function draw() {
   background(bgImage);
   time = parseInt(frameCount / 60);
-
-  //let ship_position = parseFloat(sensor_data);
-  ship_position = 1;
+  let ship_position = parseFloat(sensor_data);
+  //ship_position = 1;
   if(ship_position){
     ship.draw(ship_position);
   } else {
@@ -423,7 +422,7 @@ function showMainMenu(){
 
 
 // Got the list of ports
-/*function gotList(thelist) {
+function gotList(thelist) {
   print("List of Serial Ports:");
   // theList is an array of their names
   for (let i = 0; i < thelist.length; i++) {
@@ -455,4 +454,4 @@ function gotData() {
   } else {
     sensor_data = '';
   }
-}*/
+}

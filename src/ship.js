@@ -101,7 +101,7 @@ class Ship {
         beamSound.play();
       }
     }
-    /*if (a > 0) {
+    if (a > 0) {
       //console.log('SENSOR1: ' + a + ' - X: ' + this.x);
       if (this.x >= 5) {
         this.x -= 10;
@@ -113,7 +113,7 @@ class Ship {
       if (this.x <= (innerWidth - 60)) {
         this.x += 10;
       }
-  }*/
+  }
   let shipW = 70;
   let shipH = 130;
   this.shipMain.position.x = this.x;
